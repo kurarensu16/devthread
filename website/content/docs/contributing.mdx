@@ -1,0 +1,47 @@
+---
+title: Contributing and development
+description: Improve the skill and site with scoped changes and recorded checks.
+---
+
+## Work from a local checkout
+
+Read `docs/FORMAT.md`, `docs/WORKFLOWS.md`, and `docs/ROADMAP.md` before adding behavior. Keep changes within the v1 scope and preserve existing user files. Focus script tests on real state integrity and preservation risks.
+
+The [GitHub repository](https://github.com/kurarensu16/devthread) is configured in site navigation. The initial source upload is pending; after it is complete, use issues and pull requests with the problem, intended behavior, and exact verification results.
+
+## Skill checks
+
+From the repository root:
+
+```text
+python -m unittest discover -s tests -p "test_*.py"
+python skill/devthread/scripts/validate.py .
+```
+
+Every local script also supports `--help`. The Python scripts require no third-party dependencies.
+
+## Website development
+
+Node.js 20.9 or later is required by the selected Next.js version. The tested build environment uses Node 22.18.0 and npm 11.5.2. From `website/`:
+
+```text
+npm ci
+npm run dev
+```
+
+Before handing off a website change, run:
+
+```text
+npm run lint
+npm run typecheck
+npm run build
+npm run check:links
+```
+
+The site exports static files to `website/out/`. See `website/README.md` for the tracked repository URL and publication checks. Publishing requires completed release checks and separate approval.
+
+## Compatibility contributions
+
+Supply packaging, discovery, workflow, and fresh-session recovery evidence for a new environment. An agent or platform becomes tested through observed results, not through intent.
+
+DevThread uses the [MIT license](/docs/license/). The repository does not currently require a contributor license agreement.

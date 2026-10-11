@@ -1,0 +1,22 @@
+---
+title: Reconciliation and recovery
+description: Compare the saved plan with what the repository currently supports.
+---
+
+## Compare plans with evidence
+
+Ask DevThread to inspect a requirement or task, search relevant source and tests, and associate findings with that task. It should classify evidence, describe the search boundary, and flag stale status or contradictory checks.
+
+> Compare the roadmap with the code. Reconcile each task against relevant source and tests, and explain any drift.
+
+Reconciliation can update `.devthread/` evidence and reports. It does not change application code unless you explicitly request implementation.
+
+## Resume in a new session
+
+Ask for `status` and `next` with the project open. The saved map identifies goals, decisions, and dependencies; current source and check results establish whether the plan still fits.
+
+> Use DevThread to recover this project's context. Show blockers and evidence gaps, then recommend the next eligible task with a reason.
+
+## Resolve drift
+
+Review any mismatches before proceeding. A completed task with a new failing test needs investigation. A visible source implementation without a recorded check is `likely`, not automatically verified. If no task is eligible, DevThread should explain the dependency or status issue rather than inventing work.

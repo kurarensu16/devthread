@@ -1,0 +1,30 @@
+---
+title: Status
+description: Summarize saved progress, evidence gaps, blockers, and the next action.
+---
+
+## When to use it
+
+Recover saved context or get a concise view of where the project stands.
+
+## Prompt example
+
+> Show DevThread status. Include task counts, blockers, drift, risks, and the next eligible action.
+
+These workflows use natural language; slash commands are not assumed.
+
+## Reads and writes
+
+**Reads:** Saved project state, tasks, reports, and relevant current repository evidence.
+
+**Writes:** None.
+
+## Expected result
+
+Factual counts by status, evidence gaps or drift, and the next justified action.
+
+## Boundary
+
+The status script counts saved state; it does not inspect runtime behavior. Do not invent completion percentages from ambiguous evidence.
+
+Continue with [next task](/docs/workflows/next/). See the [format reference](/docs/format/) for the files and metadata.

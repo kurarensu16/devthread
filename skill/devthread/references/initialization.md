@@ -1,0 +1,3 @@
+# Initialize
+
+Inspect the target repository and read its project instructions. Check for existing `.devthread/` and legacy `.devmap/` state before writing. New projects use `.devthread/`; an existing legacy directory is retained in place. If both paths exist, stop and ask the developer to resolve the ambiguity. Run `python scripts/init.py <target> --dry-run` from this skill directory or use an absolute path to the script. Explain the planned additions; then run without `--dry-run` when initialization is requested. Initialization creates only missing files and refuses malformed existing state. Follow with `validate.py`; report any errors without silently repairing user content. Do not overwrite `AGENTS.md` or any other existing file.

@@ -1,0 +1,30 @@
+---
+title: Next task
+description: Recommend work that is eligible under the saved dependencies.
+---
+
+## When to use it
+
+Choose what can start after reviewing project context and evidence.
+
+## Prompt example
+
+> Use DevThread to recommend the next task. Explain its dependency, priority, and evidence basis.
+
+These workflows use natural language; slash commands are not assumed.
+
+## Reads and writes
+
+**Reads:** Validated tasks, dependency status, priority, and evidence.
+
+**Writes:** None, unless you explicitly ask to record the recommendation.
+
+## Expected result
+
+The highest-priority eligible ready task, breaking ties by numeric ID; or an explanation that no task qualifies.
+
+## Boundary
+
+The recommendation is advisory. It does not set task status or change application code.
+
+Continue with [implement](/docs/workflows/implement/). See the [format reference](/docs/format/) for the files and metadata.

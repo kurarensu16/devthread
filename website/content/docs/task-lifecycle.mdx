@@ -1,0 +1,29 @@
+---
+title: Task lifecycle
+description: Status describes work progression; evidence describes support for implementation claims.
+---
+
+## Status values
+
+| Status | Meaning |
+| --- | --- |
+| `backlog` | Defined but not ready to start |
+| `ready` | Eligible to start; all dependencies are done |
+| `in_progress` | Work is underway |
+| `blocked` | A stated impediment prevents progress |
+| `review` | Implementation awaits review or verification |
+| `done` | Acceptance criteria were explicitly reviewed and status updated |
+
+Tasks can move back when evidence changes; this is not a rigid one-way pipeline. Record the reason for a block or reopened task.
+
+## Dependencies and priority
+
+`depends_on` lists existing task IDs. References must be unique, cannot point to the task itself, and cannot form cycles. A task marked `ready` while a dependency is unfinished is invalid state.
+
+The `next` workflow selects ready tasks whose dependencies are done, ordering by high, medium, then low priority and breaking ties by numeric task ID.
+
+## Completion is a review decision
+
+Source changes and passing tests do not automatically set `done`. Check each acceptance criterion and any contradictory evidence before updating the task. The Taskboard example ends with TASK-002 in `review` even after four passing tests.
+
+[Evidence levels](/docs/evidence/) are separate from these statuses. A task can be in `review` with verified checks, or have a prior `done` status while new failing evidence exposes drift.

@@ -1,0 +1,26 @@
+---
+title: Introduction
+description: Keep the current state of a software project close to its code.
+---
+
+DevThread is an open-source Agent Skill that helps your coding agent understand a repository, maintain a lightweight development map, reconcile plans against code evidence, and resume work across sessions.
+
+It uses the host coding agent's model, tools, and repository access. The map lives in a `.devthread/` directory as Markdown and JSON, where you can review it and version it with the project.
+
+## Start with your repository
+
+1. [Install the complete skill directory](/docs/installation/).
+2. Follow the [new repository](/docs/quick-start-new/) or [existing repository](/docs/quick-start-existing/) quick start.
+3. Learn how [task status](/docs/task-lifecycle/) differs from [evidence](/docs/evidence/).
+
+## Product philosophy
+
+A useful map records what is known, what is inferred, and what remains unresolved. Stable task IDs and dependencies make the next action explainable. Exact check results make claims reviewable.
+
+Source inspection supports understanding; it does not prove runtime behavior. DevThread preserves failures and checks that could not run. A task becomes `done` only after acceptance criteria have been explicitly reviewed.
+
+## Current scope
+
+Version 1 includes the skill, templates, Python scripts, this landing page, and documentation. The scripts use the Python standard library. DevThread does not need a service or its own model API.
+
+[Compatibility](/docs/compatibility/) evidence comes from Codex on Windows with Python 3.13. The renamed scripts pass local checks; earlier agent-session tests used the original DevMap name, and `$devthread` discovery still needs a fresh-chat check. Other environments remain untested. Read the [safety and privacy notes](/docs/safety/) before adding private project information to the map.

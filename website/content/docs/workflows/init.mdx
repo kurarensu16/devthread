@@ -1,0 +1,30 @@
+---
+title: Initialize
+description: Create missing repository state without replacing existing files.
+---
+
+## When to use it
+
+Start a new map in a new or existing repository.
+
+## Prompt example
+
+> Use DevThread to initialize this repository. Inspect existing instructions and show any existing map first.
+
+These workflows use natural language; slash commands are not assumed.
+
+## Reads and writes
+
+**Reads:** Repository structure, project instructions, existing `.devthread/`, and the versioned templates.
+
+**Writes:** Missing `.devthread/` files and directories only. Existing content is preserved.
+
+## Expected result
+
+A list of created and retained files, plus any validation problem that prevented initialization.
+
+## Boundary
+
+Initialization requires an existing directory. It stops on malformed existing state or unsupported links rather than repairing or replacing them.
+
+Continue with [understand](/docs/workflows/understand/). See the [format reference](/docs/format/) for the files and metadata.

@@ -1,0 +1,26 @@
+---
+title: Evidence levels
+description: Make implementation support explicit without inventing certainty.
+---
+
+## The five assessments
+
+| Level | What supports it |
+| --- | --- |
+| `verified` | Relevant criteria have recorded passing checks or review results, with exact evidence and no known contradiction |
+| `likely` | Relevant implementation is visible in source, but behavior or criteria have not been verified |
+| `missing` | A bounded search found no implementation evidence for the requirement or task |
+| `blocked` | A named impediment prevented obtaining needed evidence |
+| `unknown` | Available information does not justify another assessment |
+
+A file reference or an agent's claim is not equivalent to a passing check. Describe the scope of a search before saying evidence is missing. If results conflict, record the conflict and use `unknown` until it is resolved.
+
+## Check outcomes
+
+Verification reports use `passed`, `failed`, and `not run`. For a check that could not run, record the reason. Keep earlier failures visible when later results pass, so the report explains what changed.
+
+Evidence applies to the criteria that were checked. Passing add/list tests does not verify a completion operation; no concurrency check means no concurrency claim.
+
+## Separate evidence from progress
+
+The evidence assessment `blocked` describes inability to obtain evidence. The task status `blocked` describes inability to progress. Do not calculate a completion percentage from ambiguous evidence or automatically mark a task done after editing code.

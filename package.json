@@ -1,0 +1,28 @@
+{
+  "name": "devthread",
+  "version": "0.1.0",
+  "description": "Install the DevThread repository-native agent skill",
+  "type": "module",
+  "license": "MIT",
+  "bin": { "devthread": "bin/devthread.mjs" },
+  "files": [
+    "bin/*.mjs",
+    "lib/*.mjs",
+    "skill/devthread/SKILL.md",
+    "skill/devthread/LICENSE",
+    "skill/devthread/references/*.md",
+    "skill/devthread/templates/*.md",
+    "skill/devthread/scripts/*.py"
+  ],
+  "engines": { "node": ">=22" },
+  "os": ["win32", "linux", "darwin"],
+  "repository": { "type": "git", "url": "https://github.com/kurarensu16/devthread.git" },
+  "homepage": "https://github.com/kurarensu16/devthread#readme",
+  "bugs": { "url": "https://github.com/kurarensu16/devthread/issues" },
+  "keywords": ["agent-skills", "codex", "development", "project-context"],
+  "scripts": {
+    "test": "node --test tests/npm/installer.test.mjs tests/npm/package.test.mjs",
+    "prepublishOnly": "npm test"
+  },
+  "publishConfig": { "access": "public" }
+}

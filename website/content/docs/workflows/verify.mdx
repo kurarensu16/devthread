@@ -1,0 +1,30 @@
+---
+title: Verify
+description: Check acceptance criteria and preserve exact passed, failed, and not-run outcomes.
+---
+
+## When to use it
+
+A task needs verification after implementation or because evidence has changed.
+
+## Prompt example
+
+> Use DevThread to verify TASK-002. Run relevant available checks and record exact commands, outcomes, and limits.
+
+These workflows use natural language; slash commands are not assumed.
+
+## Reads and writes
+
+**Reads:** Task criteria, relevant check configuration, implementation, and earlier reports.
+
+**Writes:** `.devthread/reports/` verification reports and justified task evidence.
+
+## Expected result
+
+Each exact command, its outcome, what it supports, and the reason for any not-run check.
+
+## Boundary
+
+Preserve contradictions and earlier failures. Passing checks alone do not automatically set done.
+
+Continue with [status](/docs/workflows/status/). See the [format reference](/docs/format/) for the files and metadata.

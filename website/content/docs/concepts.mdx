@@ -1,0 +1,30 @@
+---
+title: Project state
+description: Understand the small set of files that carries context between sessions.
+---
+
+## Repository-native context
+
+`.devthread/` holds the project's purpose, requirements, architecture, roadmap, decisions, tasks, and verification reports. Markdown is readable by developers and agents; `config.json` declares `schemaVersion: 1`.
+
+| File | Purpose |
+| --- | --- |
+| `PROJECT.md` | Purpose, users, current state, and constraints |
+| `REQUIREMENTS.md` | Stable requirement entries such as `REQ-001` |
+| `ARCHITECTURE.md` | Observed structure and labeled inferences |
+| `ROADMAP.md` | Milestones and task references |
+| `DECISIONS.md` | Approved choices and meaningful changes |
+| `tasks/` | Scoped tasks, dependencies, criteria, and evidence |
+| `reports/` | Exact check commands and outcomes |
+
+## Facts and inferences
+
+“The manifest declares Python” is an observed fact. “The app appears intended for one local user” is an inference unless another artifact establishes it. Record unknowns when evidence is insufficient.
+
+## Stable IDs
+
+Tasks and requirements retain their IDs. Allocate the next ID above the highest existing numeric suffix and do not recycle deleted IDs. Dependencies and requirement links can then be reviewed across edits.
+
+## Session recovery
+
+In a new chat, ask DevThread for status and the next task. The agent reads saved state and current repository evidence; it should describe drift or uncertainty that affects the recommendation. Saved context helps recovery, but it can become stale and still needs [reconciliation](/docs/reconciliation/).

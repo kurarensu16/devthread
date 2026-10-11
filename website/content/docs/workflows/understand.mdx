@@ -1,0 +1,30 @@
+---
+title: Understand
+description: Inspect the repository and separate observed facts from inferences.
+---
+
+## When to use it
+
+Join a project, start a fresh session, or establish context before planning.
+
+## Prompt example
+
+> Use DevThread to understand this project. Summarize its purpose, structure, constraints, current state, and uncertainties.
+
+These workflows use natural language; slash commands are not assumed.
+
+## Reads and writes
+
+**Reads:** Relevant source, manifests, docs, Git state, project instructions, and saved map context.
+
+**Writes:** Project context in `.devthread/` when requested. Application code is unchanged.
+
+## Expected result
+
+Observed technologies and behavior, labeled inferences, evidence gaps, and a proposed next useful action.
+
+## Boundary
+
+Read the smallest relevant set of files. A manifest or filename does not establish working behavior.
+
+Continue with [map](/docs/workflows/map/). See the [format reference](/docs/format/) for the files and metadata.

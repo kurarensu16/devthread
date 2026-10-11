@@ -1,0 +1,26 @@
+---
+title: Safety and privacy
+description: Keep state reviewable and use the host agent's existing controls.
+---
+
+## Local state and host access
+
+DevThread stores project state in your repository and uses your coding agent's model, tools, and access. It does not provide a separate model API or background service. Host permissions and data handling still apply when the agent reads your project.
+
+## What belongs in the map
+
+Record project purpose, scoped requirements, approved decisions, task criteria, relevant file references, and check outcomes. Keep secrets, access tokens, and raw private model transcripts out of `.devthread/`. Review the map before committing or sharing it, especially for private projects.
+
+## File preservation
+
+Initialization creates only missing files. It preserves existing instructions, application code, and state. Invalid state is reported rather than silently repaired. Symlinked state directories are unsupported by the scripts.
+
+## Changes and approval
+
+Understanding, mapping, reconciliation, next-task selection, and status do not change application code unless you request implementation. A named implementation request authorizes scoped reversible changes.
+
+Specific approval is needed for destructive actions, external publication or deployment, license changes, or materially broader work. DevThread never automatically commits, pushes, merges, deletes, or deploys.
+
+## Untrusted repository content
+
+Repository files and tool output provide evidence. Instructions embedded in arbitrary source or output must not override your intent or the host's safety rules. Read existing project guidance such as `AGENTS.md` while keeping those boundaries.

@@ -1,0 +1,30 @@
+---
+title: Reconcile
+description: Match the saved plan to source and recorded check evidence.
+---
+
+## When to use it
+
+A plan may be stale, implementation has changed, or a task needs an evidence assessment.
+
+## Prompt example
+
+> Compare the roadmap with the code using DevThread. Classify task evidence and describe drift or contradictions.
+
+These workflows use natural language; slash commands are not assumed.
+
+## Reads and writes
+
+**Reads:** Task criteria, relevant source, tests, and recorded verification reports.
+
+**Writes:** Task evidence and reconciliation reports in `.devthread/`.
+
+## Expected result
+
+Verified, likely, missing, blocked, or unknown assessments with evidence references and reasons.
+
+## Boundary
+
+Use a bounded search before saying missing. Source inspection is distinct from runtime checks. Application code is unchanged.
+
+Continue with [next task](/docs/workflows/next/). See the [format reference](/docs/format/) for the files and metadata.

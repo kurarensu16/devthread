@@ -1,0 +1,41 @@
+---
+title: Compatibility
+description: Separate directly tested environments from untested ones.
+---
+
+## Recorded compatibility
+
+| Environment | Installation and discovery | Workflow evidence | Status |
+| --- | --- | --- | --- |
+| Codex on Windows with Python 3.13 | User-scoped installation at `.codex/skills/`; fresh-chat discovery was exercised under the original DevMap name | Renamed scripts and process exercises pass; prior-name chats checked understand and recovery with status and next | Script behavior tested; new-name discovery pending |
+| Other agents, operating systems, and Python versions | Not checked | Not run | Untested |
+
+The remaining workflows were exercised in the original Codex chat on realistic examples. The process-level automated scenario checks saved state and scripts, but does not independently prove that an agent follows every skill instruction.
+
+## Rename verification
+
+DevThread was previously named DevMap. The historical agent results use `$devmap`; fresh-chat discovery with `$devthread` still needs checking. The current scripts pass 15 tests, including preserving legacy `.devmap/` files and refusing ambiguous dual-state paths without writes. New projects use `.devthread/`.
+
+## Host conventions
+
+The recorded agent discovery used `.codex/skills/` and the original DevMap name. [Current OpenAI guidance](https://learn.chatgpt.com/docs/build-skills) lists `.agents/skills/` for local discovery. The npm installer now exercises copying into that project location; fresh-chat discovery still needs a separate check.
+
+The [installation guide](/docs/installation/) also describes Codex's built-in `$skill-installer` and Vercel Labs' `npx skills add`. Those routes have not been exercised with DevThread. GitHub installation requires the initial source upload; CLI file installation and fresh-chat discovery need their own checks.
+
+## npm installer and operating systems
+
+The local npm package targets Windows, Linux, and macOS with Node 22+ and no runtime dependencies. Python 3 runs the skill's scripts. Project, global, custom-directory, and dry-run options use native OS paths and preserve existing installations. Registry publication is pending.
+
+| OS | Installer verification | Discovery |
+| --- | --- | --- |
+| Windows | 11 tests pass, including a packed-package install and Python init/validate/status; Node 22.18.0 and Python 3.13 | `$devthread` fresh-chat check pending |
+| Linux | POSIX paths checked on Windows; native CI configured and not run | Not run |
+| macOS | POSIX paths checked on Windows; native CI configured and not run | Not run |
+
+CI checks the npm archive and the 15 Python tests on all three OSes with Node 22 and 24. It can run after the initial source push. This records an intended test matrix, not passing remote results.
+
+## Reporting another environment
+
+Record host and version, OS, Python version, complete packaging location, discovery behavior, and a representative workflow. Preserve exact passed, failed, and not-run outcomes. Confirm context recovery in a fresh session before describing it as tested.
+
+Python uses the standard library and is intended to be portable. Portability intent alone is not a completed platform test.

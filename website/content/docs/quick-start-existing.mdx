@@ -1,0 +1,46 @@
+---
+title: Quick start — existing repository
+description: Inspect an existing application, preserve its instructions, and map remaining work.
+---
+
+## Try the supplied application
+
+From the DevThread checkout root in PowerShell, copy the Taskboard fixture to a new temporary directory. This leaves the original fixture unchanged.
+
+```powershell
+$devthreadPractice = Join-Path $env:TEMP ('devthread-existing-' + [guid]::NewGuid())
+Copy-Item -LiteralPath '.\tests\fixtures\taskboard' -Destination $devthreadPractice -Recurse
+$devthreadInstructionsBefore = (Get-FileHash (Join-Path $devthreadPractice 'AGENTS.md')).Hash
+python .\skill\devthread\scripts\init.py $devthreadPractice --dry-run
+python .\skill\devthread\scripts\init.py $devthreadPractice
+python .\skill\devthread\scripts\validate.py $devthreadPractice
+python .\skill\devthread\scripts\status.py $devthreadPractice --json
+$devthreadInstructionsBefore -eq (Get-FileHash (Join-Path $devthreadPractice 'AGENTS.md')).Hash
+Push-Location $devthreadPractice
+python -m unittest discover -s tests -v
+Pop-Location
+```
+
+The file hash comparison should return `True`. The baseline application has two tests for adding and listing tasks. Initialization creates missing map files without replacing application files or `AGENTS.md`.
+
+## Understand and map
+
+Open the copied application in Codex with DevThread installed. Ask:
+
+> Use DevThread to understand this application. Read its existing instructions, inspect its source and tests, and separate facts from inferences.
+
+Then ask:
+
+> Map the remaining work to allow completing a stored task while preserving its ID. Keep the JSON storage and standard-library dependencies. Add clear acceptance criteria and dependencies.
+
+Review the task before implementation. The [recorded example](/docs/example/) covers this exact kind of change.
+
+## Reconcile, implement, verify
+
+Ask the agent to compare the map against source and tests, then recommend a dependency-valid task. Missing completion behavior must not be described as verified merely because baseline add/list tests pass.
+
+Request implementation of the task by its actual ID, then ask for verification. Review the exact check commands and outcomes. Leave it in `review` until its acceptance criteria have been explicitly accepted.
+
+## Use your own project
+
+Use the same sequence on your repository: inspect existing instructions, initialize only missing state, map a bounded goal, reconcile, and choose eligible work. Review `.devthread/` changes before committing them. Scripts require an existing target directory and stop on invalid state rather than silently repairing it.

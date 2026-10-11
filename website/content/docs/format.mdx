@@ -1,0 +1,76 @@
+---
+title: File format and schema
+description: The repository-native DevThread version 1 contract.
+---
+
+## Directory layout
+
+```text
+.devthread/
+  config.json
+  PROJECT.md
+  REQUIREMENTS.md
+  ARCHITECTURE.md
+  ROADMAP.md
+  DECISIONS.md
+  tasks/TASK-001.md
+  reports/TASK-001-verification.md
+```
+
+Initialization adds `.gitkeep` markers in `tasks/` and `reports/` so empty directories survive Git checkout. Existing files are never replaced.
+
+## Existing DevMap state
+
+DevThread was previously named DevMap. The scripts accept an existing `.devmap/` directory in place, using the same version 1 format. Initialization fills only missing legacy files and does not create `.devthread/` alongside them. If both paths exist, the scripts stop so you can review the two maps; they do not choose or merge automatically.
+
+## Configuration
+
+`config.json` is a JSON object with a required integer `schemaVersion`, currently `1`. Preserve unknown fields when editing. Unknown future versions fail validation and stop mutation.
+
+```json
+{ "schemaVersion": 1 }
+```
+
+## Task example
+
+The example below illustrates the required format; it is not a claim of completed implementation.
+
+```yaml
+---
+id: TASK-001
+title: "Add a command-line calculator"
+status: ready
+priority: medium
+depends_on: []
+requirements: [REQ-001]
+---
+```
+
+The body must have each of these level-two sections exactly once: `Goal`, `Scope`, `Acceptance Criteria`, `Relevant Files`, `Evidence`, and `Notes/Blockers`. `Relevant Files` may say `Unknown`.
+
+The filename must match the frontmatter ID, for example `TASK-001.md`. IDs match `TASK-[0-9]{3,}`. Requirements are headed `## REQ-001: Title` in `REQUIREMENTS.md` and match `REQ-[0-9]{3,}`. IDs are unique and stable; allocate above the highest existing suffix and do not recycle them.
+
+## Supported frontmatter
+
+Version 1 uses a small YAML subset so the scripts can remain dependency-free: one `key: value` per line, unique keys, plain or JSON-quoted strings, and inline lists of simple IDs or JSON-quoted strings. Titles containing `:` or `#` must be JSON-quoted.
+
+Nested objects, block strings, aliases, multiline values, and comments within values are unsupported. Unknown keys with valid subset values are allowed and should be preserved.
+
+## References and semantics
+
+`priority` is `low`, `medium`, or `high`. [Task status](/docs/task-lifecycle/) has six values. `depends_on` contains unique existing task IDs with no self references or cycles. `requirements` contains unique IDs defined in the requirements file.
+
+A `ready` task must have all dependencies marked `done`. The validator flags inconsistent state; it does not update status for you. Evidence levels are independent of task status.
+
+## Scripts
+
+Run these from the DevThread checkout root. Replace `PATH_TO_PROJECT` with an existing target directory and quote paths with spaces.
+
+```text
+python skill/devthread/scripts/init.py PATH_TO_PROJECT --dry-run
+python skill/devthread/scripts/init.py PATH_TO_PROJECT
+python skill/devthread/scripts/validate.py PATH_TO_PROJECT
+python skill/devthread/scripts/status.py PATH_TO_PROJECT --json
+```
+
+Each script exposes `--help`. Validation returns nonzero for invalid state. Status validates first, then computes saved task counts and eligible tasks; it does not determine whether source behavior works.

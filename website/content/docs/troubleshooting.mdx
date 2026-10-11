@@ -1,0 +1,56 @@
+---
+title: Troubleshooting and FAQ
+description: Resolve discovery, Python, state validation, and dependency problems.
+---
+
+## The skill does not appear
+
+Confirm that the complete directory is installed and `SKILL.md` has its name and description frontmatter. Start a fresh chat and explicitly ask to use `$devthread`. If the host does not detect it, consult its current skill discovery guidance. The tested path and current documented path differ; see [compatibility](/docs/compatibility/).
+
+## Python cannot run
+
+Run `python --version`. If your shell cannot find it or invokes an incorrect executable, repair the local Python setup before running the scripts. The tested environment used Python 3.13. Other versions are untested.
+
+## GitHub installation cannot find the skill
+
+The source upload is still pending. The repository must contain `skill/devthread/SKILL.md` and its supporting directories before GitHub-based installers can download it. Use the local source instructions on the [installation page](/docs/installation/) until the initial push is complete.
+
+## npm install devthread fails
+
+The npm package is implemented locally and has not yet been published. Use its local-source or archive instructions in the [guide](/docs/installation/) until publication. The DevThread installer requires Node.js 22+. After publication, `npm install devthread` downloads the package, and `npx devthread install` copies the skill into its discovery location.
+
+## The installer says the destination already exists
+
+The installer preserves files, directories, and linked destinations, including empty directories. Review and retain your existing copy before updating it, or select a different exact directory with `--dest`. There is no automatic replacement option.
+
+## An installation stopped partway through
+
+Read the error and resolve the filesystem problem. The installer writes `SKILL.md` last and reports the partial directory if copying fails. Review and preserve that directory before retrying; the installer does not remove it automatically.
+
+## Target is not a directory
+
+Create the project directory first. Initialization expects an existing directory; quote a target path containing spaces.
+
+## Validation fails
+
+Read the specific error and compare the file with the [format reference](/docs/format/). Common causes include malformed frontmatter, a filename/ID mismatch, missing required sections, an undefined requirement, missing dependencies, a cycle, or a ready task with an unfinished dependency. Review and repair the map manually; initialization does not erase invalid state.
+
+## Both state directories exist
+
+If a project has both `.devthread/` and legacy `.devmap/`, all scripts stop to avoid choosing the wrong map. Review which state is authoritative and preserve the other map in a safe location before rerunning the scripts. Existing `.devmap/` projects do not need to rename their directory to use DevThread.
+
+## No task is eligible
+
+Check that at least one task is `ready` and all of its dependencies are `done`. Backlog, blocked, and review tasks do not qualify. Status reports the saved state; changing it requires an explicit review decision.
+
+## Is verified the same as done?
+
+No. Evidence describes what checks support; status describes work progression. A task can have verified criteria while awaiting acceptance in `review`.
+
+## Does DevThread run my tests automatically?
+
+The agent's verify workflow runs relevant available checks when requested and permitted. The status and validation scripts inspect the map; they do not execute application tests. A check that cannot run must be recorded as `not run` with a reason.
+
+## Can I use another agent?
+
+The packaging is readable and self-contained, but other hosts have not been tested. Follow their current installation guidance and record a representative exercise before claiming support.

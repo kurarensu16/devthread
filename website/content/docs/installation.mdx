@@ -1,0 +1,169 @@
+---
+title: Installation
+description: Install the complete DevThread skill and confirm it loads in your Codex environment.
+---
+
+## Choose an installation method
+
+| Method | What you need | Current status |
+| --- | --- | --- |
+| DevThread npm installer | Node.js 22+; Python 3 for skill scripts | Local source/archive tested on Windows; registry publication and Linux/macOS checks pending |
+| Codex `$skill-installer` | Codex and access to GitHub | Available after the source upload; DevThread installation with this route is untested |
+| `npx skills add` | Node.js, npm, and Git | Local-source option available; GitHub needs the source upload; route untested for DevThread |
+| Copy the skill directory | A local source checkout | Files and scripts were checked with the original DevMap installation; new-name discovery is pending |
+
+Python 3 is required to run DevThread's local scripts with any installation method. The recorded Python tests used 3.13. For the DevThread npm installer, check `node --version` and `npm --version`. On Windows, check `python --version`; on Linux or macOS, use `python3 --version`.
+
+The [GitHub repository](https://github.com/kurarensu16/devthread) has been created. It was empty when checked on 2026-10-11; the initial source upload is pending. The npm package is also unpublished. Use a local source checkout or locally built archive for now.
+
+## Install with the DevThread npm package
+
+The installer uses Node's built-in modules and native paths for Windows, Linux, and macOS. It copies the complete skill and refuses to replace an existing file, directory, or linked destination. Installation does not initialize or change the project's development map.
+
+After npm publication, run this in your project using PowerShell, bash, or zsh:
+
+```sh
+npx devthread install
+```
+
+This installs to `.agents/skills/devthread/` in the current project. These options use the same command on all three OSes:
+
+```sh
+# Available across projects: ~/.agents/skills/devthread/
+npx devthread install --global
+
+# An existing project, including a path with spaces
+npx devthread install --project "PATH_TO_PROJECT"
+
+# This exact skill directory
+npx devthread install --dest "PATH_TO_SKILL_DIRECTORY"
+
+# Preview the destination without creating files
+npx devthread install --global --dry-run
+```
+
+Windows user paths resolve under the user's home directory, such as `C:/Users/NAME/.agents/skills/devthread/`. Linux and macOS use their respective home directories. No administrator installation or symlinks are required.
+
+### Use the local source now
+
+From the DevThread checkout, use the existing target project's path:
+
+```sh
+node bin/devthread.mjs install --project "PATH_TO_PROJECT" --dry-run
+node bin/devthread.mjs install --project "PATH_TO_PROJECT"
+```
+
+### Install a locally built archive
+
+From the checkout, create the package and install its command:
+
+```sh
+npm pack --ignore-scripts
+npm install --global ./devthread-0.1.0.tgz
+devthread install --global --dry-run
+devthread install --global
+```
+
+The first global command installs the npm CLI; `devthread install --global` installs the skill files. Neither action updates an existing skill automatically. If the destination exists, inspect and preserve that installation before selecting a new destination or performing a reviewed update.
+
+### OS verification
+
+| OS | Recorded checks |
+| --- | --- |
+| Windows | 11 installer/package tests pass with Node 22.18.0, including npm archive installation and bundled Python scripts |
+| Linux | POSIX path resolution checked on Windows; native installer/script CI configured and not yet run |
+| macOS | POSIX path resolution checked on Windows; native installer/script CI configured and not yet run |
+
+Fresh-chat discovery under `$devthread` remains pending on all three OSes. File and script checks do not prove agent discovery. See [compatibility](/docs/compatibility/) for the full evidence limits.
+
+## Install through Codex
+
+[OpenAI's skill guidance](https://learn.chatgpt.com/docs/build-skills#install-curated-skills-for-local-use) describes using the built-in installer to download skills from other repositories. After the source upload, send this prompt in Codex:
+
+```text
+$skill-installer Install the devthread skill from kurarensu16/devthread, path skill/devthread. Preserve any existing installation.
+```
+
+Check the destination reported by the installer. Then use the verification steps below. This route has not yet been exercised with DevThread.
+
+## Install through npx
+
+The [Vercel Labs skills CLI](https://github.com/vercel-labs/skills#install-a-skill) supports GitHub sources and a Codex target. After the source upload, run this from the project where you want to use DevThread:
+
+```sh
+npx skills add kurarensu16/devthread --skill devthread --agent codex --copy
+```
+
+The default is a project installation at `.agents/skills/devthread/`. `--copy` installs the complete files without requiring symlinks. To make the skill available across projects, add `--global`; the CLI uses `~/.agents/skills/devthread/` for that scope. Review the installer's destination and confirmation before proceeding.
+
+To use this installer with the current local source, run from the DevThread checkout:
+
+```sh
+npx skills add ./skill/devthread --skill devthread --agent codex --copy
+```
+
+These CLI commands follow the installer's documented options; they have not been executed for DevThread here. File installation and fresh-chat discovery still need verification. Other agent targets remain untested.
+
+## What about npm install devthread?
+
+The DevThread npm package is implemented locally and still awaits publication. Once published, `npm install devthread` downloads the package as a dependency; then `npx devthread install` places the skill in its discovery directory. Alternatively, `npm install --global devthread` installs the CLI command, followed by `devthread install`. The single `npx devthread install` route is the simplest starting point after publication.
+
+## Manual installation on Windows
+
+Have a local DevThread source checkout, Codex with local repository access, and Python 3. The recorded tests used Windows and Python 3.13. Run `python --version` to check your Python installation.
+
+Copy the full `skill/devthread/` directory into `~/.codex/skills/devthread/`. Keep its `references/`, `templates/`, and `scripts/` directories together with `SKILL.md`. This user-scoped location was exercised with the original DevMap package; fresh-chat discovery under the new name still needs checking. OpenAI's [skill evaluation guide](https://developers.openai.com/blog/eval-skills) describes this location. [Current skill guidance](https://learn.chatgpt.com/docs/build-skills) lists `.agents/skills/`; that alternative path is also untested for DevThread here.
+
+From the DevThread checkout root in PowerShell, use the following command. It stops if an installation already exists so that an existing skill is not overwritten.
+
+```powershell
+$devthreadSkill = Join-Path $env:USERPROFILE '.codex\skills\devthread'
+if (Test-Path -LiteralPath $devthreadSkill) {
+  throw 'DevThread is already installed. Review the existing copy before updating it.'
+} else {
+  New-Item -ItemType Directory -Path (Split-Path $devthreadSkill) -Force | Out-Null
+  Copy-Item -LiteralPath '.\skill\devthread' -Destination $devthreadSkill -Recurse
+}
+```
+
+## Check the files and scripts
+
+For the manual Windows installation, continue in the same PowerShell session. For another method, set `$devthreadSkill` to the installation directory reported by that installer first:
+
+```powershell
+Test-Path (Join-Path $devthreadSkill 'SKILL.md')
+Test-Path (Join-Path $devthreadSkill 'references\planning.md')
+Test-Path (Join-Path $devthreadSkill 'templates\TASK.md')
+python (Join-Path $devthreadSkill 'scripts\init.py') --help
+python (Join-Path $devthreadSkill 'scripts\validate.py') --help
+python (Join-Path $devthreadSkill 'scripts\status.py') --help
+```
+
+The three path checks should return `True`, and each script should print usage information.
+
+For a project installation on Linux or macOS, run these from the target project:
+
+```sh
+test -f .agents/skills/devthread/SKILL.md
+python3 .agents/skills/devthread/scripts/init.py --help
+python3 .agents/skills/devthread/scripts/validate.py --help
+python3 .agents/skills/devthread/scripts/status.py --help
+```
+
+For global or custom installation, use the corresponding installed path. These POSIX commands are documented for native OS verification; they have not been run here.
+
+## Invoke the skill
+
+Start a fresh Codex chat with your project open and explicitly request:
+
+> Use $devthread to understand this repository. Report observed facts, inferences, and the next useful action.
+
+Confirm the agent loaded DevThread before relying on its workflows. Fresh-chat discovery and recovery of saved context were exercised before the rename as DevMap; the new skill name still needs a fresh-chat check. If discovery fails, use the [troubleshooting guide](/docs/troubleshooting/).
+
+## Existing project maps
+
+The renamed scripts accept legacy `.devmap/` state in place. New projects use `.devthread/`. Keep only one active map per project; when both directories exist, the scripts stop for review rather than merging or choosing one.
+
+## Updates and other agents
+
+Review changes before replacing an installed copy, and retain local modifications. The website does not provide an automatic updater. Other hosts and installation paths are untested; follow their current packaging guidance and record installation and workflow evidence before advertising support.

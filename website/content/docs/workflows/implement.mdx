@@ -1,0 +1,30 @@
+---
+title: Implement
+description: Make authorized changes to a scoped task and record the results.
+---
+
+## When to use it
+
+You have reviewed a task and want its application changes made. Replace TASK-002 with the actual ID.
+
+## Prompt example
+
+> Use DevThread to implement TASK-002. Inspect its context, present a scoped plan, make the authorized changes, and run relevant checks.
+
+These workflows use natural language; slash commands are not assumed.
+
+## Reads and writes
+
+**Reads:** The task, dependencies, requirement criteria, decisions, project instructions, and affected code.
+
+**Writes:** Relevant application files and `.devthread/` task or report records.
+
+## Expected result
+
+A scoped implementation, exact check outcomes, changed-file summary, limitations, and a task ready for review.
+
+## Boundary
+
+A request to implement authorizes scoped reversible edits. Obtain specific approval for destructive, external, or materially broader changes. Never automatically commit, push, merge, delete, or deploy.
+
+Continue with [verify](/docs/workflows/verify/). See the [format reference](/docs/format/) for the files and metadata.

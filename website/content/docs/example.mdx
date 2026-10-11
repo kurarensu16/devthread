@@ -1,0 +1,45 @@
+---
+title: End-to-end example
+description: Follow the recorded Taskboard exercise from missing behavior to reviewed evidence.
+---
+
+This is a condensed account of the local Codex exercise in `examples/taskboard-session/`, originally performed as DevMap. The map now lives in `.devthread/`; its original reports are preserved. The commands below use the renamed scripts. Conversation prompts shown on the landing page are illustrative summaries.
+
+## Starting point
+
+Taskboard is a small JSON-backed Python application with add/list behavior, two tests, and existing `AGENTS.md` instructions. DevThread initialization preserved the instructions' SHA-256 hash and added missing state.
+
+Understanding recorded the existing behavior and the missing completion operation. Mapping created two requirements and tasks. TASK-002 depended on the existing add/list task, TASK-001.
+
+## Reconcile and choose
+
+Baseline tests verified adding and listing tasks. A bounded source/test search found no `complete_task` or completion function, so completion was assessed `missing`. With TASK-001 done, TASK-002 was the sole eligible ready task.
+
+## Implement and verify
+
+An acceptance test was added before implementation. The test command failed because `complete_task` could not be imported. The example copy then gained that operation; the original fixture was unchanged.
+
+| Exact command, from the example directory | Recorded outcome |
+| --- | --- |
+| `python -m unittest discover -s tests -v` before the new acceptance test | Passed: 2 baseline tests |
+| `python -m unittest discover -s tests -v` with the new test before implementation | Failed: `ImportError`, completion operation absent |
+| `python -m unittest discover -s tests -v` after implementation | Passed: 4 tests |
+| Concurrent-writer check | Not run: outside this example's criteria; no harness supplied |
+
+The checks cover completing a task while preserving its ID and other tasks, handling an unknown ID without changing stored data, and retaining baseline behavior.
+
+## Saved outcome
+
+TASK-002 moved to `review`. Its evidence was assessed verified for the stated checks, and its report retained the earlier failure and the not-run concurrency check. The map validated; status reported no eligible ready task. Nothing automatically set it to `done`.
+
+Run the existing sample from the DevThread checkout root:
+
+```powershell
+Push-Location .\examples\taskboard-session
+python -m unittest discover -s tests -v
+Pop-Location
+python .\skill\devthread\scripts\validate.py .\examples\taskboard-session
+python .\skill\devthread\scripts\status.py .\examples\taskboard-session --json
+```
+
+The new-project and existing-application process scenarios are also exercised by the root test suite. Fresh Codex chats separately checked skill discovery, `understand`, and recovery with `status` and `next`. These are scoped local observations, as described in [compatibility](/docs/compatibility/).

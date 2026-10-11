@@ -1,0 +1,13 @@
+{
+  "title": "Workflows",
+  "pages": [
+    "init",
+    "understand",
+    "map",
+    "reconcile",
+    "next",
+    "implement",
+    "verify",
+    "status"
+  ]
+}

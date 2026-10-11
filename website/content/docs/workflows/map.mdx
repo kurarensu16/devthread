@@ -1,0 +1,30 @@
+---
+title: Map
+description: Turn a bounded goal into requirements, milestones, and dependency-aware tasks.
+---
+
+## When to use it
+
+Translate an approved goal into a reviewable plan or revise an existing plan.
+
+## Prompt example
+
+> Use DevThread to map the remaining work. Add stable requirement and task IDs, acceptance criteria, dependencies, and known relevant files.
+
+These workflows use natural language; slash commands are not assumed.
+
+## Reads and writes
+
+**Reads:** Project goals, decisions, architecture, requirements, existing tasks, and relevant repository evidence.
+
+**Writes:** `.devthread/` requirements, roadmap, tasks, and meaningful decisions.
+
+## Expected result
+
+Scoped tasks with unique IDs, clear goals, dependency references, and acceptance criteria.
+
+## Boundary
+
+Preserve approved decisions and existing IDs. Label unknown choices. Do not change application code while mapping.
+
+Continue with [reconcile](/docs/workflows/reconcile/). See the [format reference](/docs/format/) for the files and metadata.

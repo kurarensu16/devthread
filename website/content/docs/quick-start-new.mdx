@@ -1,0 +1,37 @@
+---
+title: Quick start — new repository
+description: Safely initialize an empty project and make its first task explicit.
+---
+
+## Create a practice directory
+
+After [installation](/docs/installation/), run these commands from the DevThread checkout root in PowerShell. They use a new temporary directory to keep the exercise separate from your project.
+
+```powershell
+$devthreadPractice = Join-Path $env:TEMP ('devthread-new-' + [guid]::NewGuid())
+New-Item -ItemType Directory -Path $devthreadPractice | Out-Null
+python .\skill\devthread\scripts\init.py $devthreadPractice --dry-run
+python .\skill\devthread\scripts\init.py $devthreadPractice
+python .\skill\devthread\scripts\validate.py $devthreadPractice
+python .\skill\devthread\scripts\status.py $devthreadPractice --json
+```
+
+The dry run lists proposed additions. Initialization creates the map; validation should accept it. Status initially reports zero tasks because initialization does not invent a project or a plan.
+
+## Map the first task
+
+Open the practice directory in Codex, then ask:
+
+> Use DevThread to map this new project. I want a small command-line calculator. Record the purpose, requirements, and the first task with acceptance criteria. Label any unchosen technical details as unknown.
+
+Review the resulting requirements and tasks. Then ask:
+
+> Use DevThread to reconcile the map with the current files and recommend the next unblocked task.
+
+An empty project should have missing implementation evidence. A first task with no dependencies can be `ready`; later tasks should wait for their dependencies.
+
+## Check and resume
+
+Re-run validation and status using the same commands. In a fresh chat on that directory, ask for status and the next task. The saved map should provide the context; review the recommendation against the repository.
+
+When ready to make code changes, request [implementation](/docs/workflows/implement/) of the specific task. This quick start initializes and plans; it does not claim that the calculator has been implemented.
