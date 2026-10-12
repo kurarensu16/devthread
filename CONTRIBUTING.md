@@ -8,4 +8,4 @@ Run tests from the repository root with `python -m unittest discover -s tests -p
 
 The root npm package requires Node 22+ and has no runtime dependencies. Run `npm test` for installer preservation checks and an offline installation of the actual archive, including its Python scripts. Use `npm pack --ignore-scripts` to inspect the publishable archive. CI targets Windows, Linux, and macOS with Node 22 and 24 and Python 3.13. Record native results before calling an OS tested; path simulation alone is insufficient.
 
-Use the [GitHub repository](https://github.com/kurarensu16/devthread) for issues or pull requests once the initial source has been pushed. Include the problem, the intended behavior, and exact verification commands and results. No contributor license agreement is required by this repository at this stage.
+Use the [GitHub repository](https://github.com/kurarensu16/devthread) for issues or pull requests. Include the problem, the intended behavior, and exact verification commands and results. No contributor license agreement is required by this repository at this stage.

@@ -7,14 +7,19 @@ description: Install the complete DevThread skill and confirm it loads in your C
 
 | Method | What you need | Current status |
 | --- | --- | --- |
-| DevThread npm installer | Node.js 22+; Python 3 for skill scripts | Local source/archive tested on Windows; registry publication and Linux/macOS checks pending |
-| Codex `$skill-installer` | Codex and access to GitHub | Available after the source upload; DevThread installation with this route is untested |
-| `npx skills add` | Node.js, npm, and Git | Local-source option available; GitHub needs the source upload; route untested for DevThread |
+| DevThread npm installer | Node.js 22+; Python 3 for skill scripts | Source/archive checks pass on Windows, Linux, and macOS in CI; registry publication pending |
+| Codex `$skill-installer` | Codex and access to GitHub | Source available on GitHub; DevThread installation with this route is untested |
+| `npx skills add` | Node.js, npm, and Git | Source available locally and on GitHub; route untested for DevThread |
 | Copy the skill directory | A local source checkout | Files and scripts were checked with the original DevMap installation; new-name discovery is pending |
 
 Python 3 is required to run DevThread's local scripts with any installation method. The recorded Python tests used 3.13. For the DevThread npm installer, check `node --version` and `npm --version`. On Windows, check `python --version`; on Linux or macOS, use `python3 --version`.
 
-The [GitHub repository](https://github.com/kurarensu16/devthread) has been created. It was empty when checked on 2026-10-11; the initial source upload is pending. The npm package is also unpublished. Use a local source checkout or locally built archive for now.
+The source is available in the [GitHub repository](https://github.com/kurarensu16/devthread). The npm package is unpublished. Use a source checkout or locally built archive for now:
+
+```sh
+git clone https://github.com/kurarensu16/devthread.git
+cd devthread
+```
 
 ## Install with the DevThread npm package
 
@@ -70,15 +75,17 @@ The first global command installs the npm CLI; `devthread install --global` inst
 
 | OS | Recorded checks |
 | --- | --- |
-| Windows | 11 installer/package tests pass with Node 22.18.0, including npm archive installation and bundled Python scripts |
-| Linux | POSIX path resolution checked on Windows; native installer/script CI configured and not yet run |
-| macOS | POSIX path resolution checked on Windows; native installer/script CI configured and not yet run |
+| Windows | Installer/package and Python suites pass in CI with Node 22 and 24 and Python 3.13; 11 npm and 15 Python tests also pass locally |
+| Linux | Installer/package and Python suites pass on `ubuntu-latest` with Node 22 and 24 and Python 3.13 |
+| macOS | Installer/package and Python suites pass on `macos-latest` with Node 22 and 24 and Python 3.13 |
+
+[The recorded CI run](https://github.com/kurarensu16/devthread/actions/runs/38134927423) exercised the actual npm archive, preservation checks, and bundled scripts on all three OSes. It also passed the website checks. These results cover the runner environments; other Python versions remain untested.
 
 Fresh-chat discovery under `$devthread` remains pending on all three OSes. File and script checks do not prove agent discovery. See [compatibility](/docs/compatibility/) for the full evidence limits.
 
 ## Install through Codex
 
-[OpenAI's skill guidance](https://learn.chatgpt.com/docs/build-skills#install-curated-skills-for-local-use) describes using the built-in installer to download skills from other repositories. After the source upload, send this prompt in Codex:
+[OpenAI's skill guidance](https://learn.chatgpt.com/docs/build-skills#install-curated-skills-for-local-use) describes using the built-in installer to download skills from other repositories. Send this prompt in Codex:
 
 ```text
 $skill-installer Install the devthread skill from kurarensu16/devthread, path skill/devthread. Preserve any existing installation.
@@ -88,7 +95,7 @@ Check the destination reported by the installer. Then use the verification steps
 
 ## Install through npx
 
-The [Vercel Labs skills CLI](https://github.com/vercel-labs/skills#install-a-skill) supports GitHub sources and a Codex target. After the source upload, run this from the project where you want to use DevThread:
+The [Vercel Labs skills CLI](https://github.com/vercel-labs/skills#install-a-skill) supports GitHub sources and a Codex target. Run this from the project where you want to use DevThread:
 
 ```sh
 npx skills add kurarensu16/devthread --skill devthread --agent codex --copy
@@ -150,7 +157,7 @@ python3 .agents/skills/devthread/scripts/validate.py --help
 python3 .agents/skills/devthread/scripts/status.py --help
 ```
 
-For global or custom installation, use the corresponding installed path. These POSIX commands are documented for native OS verification; they have not been run here.
+For global or custom installation, use the corresponding installed path. CI exercises Python init, validation, and status after installing the npm archive on Linux and macOS; the manual shell checks above have not been run separately.
 
 ## Invoke the skill
 

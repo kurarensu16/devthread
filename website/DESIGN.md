@@ -113,5 +113,5 @@ Accessibility references: [WCAG 2.2 contrast minimum](https://www.w3.org/WAI/WCA
 ## Decisions to resolve before publishing
 
 - Confirm this visual direction and whether the initial release should include the dark theme.
-- Resolved on 2026-10-11: the GitHub URL is `https://github.com/kurarensu16/devthread`, tracked in `site.config.json`. Initial source upload remains pending.
+- Resolved on 2026-10-11: the GitHub URL is `https://github.com/kurarensu16/devthread`, tracked in `site.config.json`. The initial source upload is complete.
 - Choose Fumadocs only after validating the current package combination and build.

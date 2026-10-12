@@ -11,12 +11,12 @@
 
 ## Milestone 4 — landing page and documentation
 
-- TASK-004: local landing page and 23 documentation pages implemented; static build, internal links, and exercised quick-start commands pass. The actual GitHub URL is configured. In review pending manual browser checks; initial source upload and publication remain separate steps.
+- TASK-004: local landing page and 23 documentation pages implemented; static build, internal links, and exercised quick-start commands pass. The actual GitHub URL is configured and the source upload is complete. In review pending manual browser checks; website publication remains a separate step.
 
 ## Milestone 5 — release
 
 - TASK-005: CI, clean-install and sample checks, claim review, and approved release.
-- TASK-007: user-approved npm installer and Windows/Linux/macOS targets. In review with passing native Windows/archive checks; Linux/macOS and Node 24 CI checks await source upload. Npm publication and fresh-agent discovery remain pending.
+- TASK-007: user-approved npm installer and Windows/Linux/macOS targets. In review with passing local Windows/archive checks and native CI on all three OSes with Node 22/24. Npm publication and fresh-agent discovery remain pending.
 
 ## Approved naming change
 

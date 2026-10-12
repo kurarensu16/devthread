@@ -34,4 +34,4 @@ Responsive site, installation guides, quick starts, workflow and format referenc
 
 ## Notes/Blockers
 
-TASK-003 is done. Implementation is ready for review. The browser tool's URL policy blocked visual inspection, so mobile, keyboard, and theme behavior still need manual review. The user-created GitHub repository is configured in the website and as local `origin`. The remote is empty; initial source upload and publication are pending. No commit or deployment was made.
+TASK-003 is done. Implementation is ready for review. The browser tool's URL policy blocked visual inspection, so mobile, keyboard, and theme behavior still need manual review. The source is now pushed to the user-created GitHub repository, and the website CI job passes. See `reports/TASK-007-ci.md`. Website deployment remains pending.

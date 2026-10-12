@@ -31,8 +31,8 @@ Root npm package, Node CLI, preservation and package tests, OS CI matrix, instal
 
 ## Evidence
 
-- Assessment: verified for Windows installer behavior, archive fidelity, Python script execution, and static documentation checks. Eleven npm tests and fifteen Python tests pass locally. Native Linux/macOS and Node 24 checks are configured in CI and have not run. See `reports/TASK-007-verification.md` for exact commands, failures, and limits.
+- Assessment: verified for installer behavior, archive fidelity, Python script execution, and static documentation checks in the recorded environments. Eleven npm tests and fifteen Python tests pass locally on Windows. Native CI passed on Windows, Linux, and macOS with Node 22/24 and Python 3.13, plus the website job. See `reports/TASK-007-verification.md` for local commands, failures, and limits, and `reports/TASK-007-ci.md` for remote outcomes.
 
 ## Notes/Blockers
 
-The user approved adding the npm packaging task and requested Windows, Linux, and macOS availability. Actual Linux/macOS test execution depends on available hosts or CI after source upload. Fresh Codex discovery, registry publication, and release remain separate checks.
+The user approved adding the npm packaging task, requested Windows, Linux, and macOS availability, and approved the initial commit and source push. Native OS CI is complete and passing. Fresh Codex discovery, registry publication, and release remain separate checks; this task remains in review awaiting acceptance.

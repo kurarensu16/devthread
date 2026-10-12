@@ -20,7 +20,7 @@ Existing name uses include a [programming tutorial channel](https://whix100.gith
 
 ## GitHub repository update
 
-Later on 2026-10-11, the user created [kurarensu16/devthread](https://github.com/kurarensu16/devthread). The local `origin` and website links now use that repository. A successful remote lookup returned no refs; the initial source upload is pending. Domain and package reservations remain unchanged.
+Later on 2026-10-11, the user created [kurarensu16/devthread](https://github.com/kurarensu16/devthread). The local `origin` and website links now use that repository. After the user approved the initial commit and push, the source was uploaded on `master` at `d160615`. Domain and package reservations remain unchanged; npm publication is pending.
 
 ## Repository and saved state
 

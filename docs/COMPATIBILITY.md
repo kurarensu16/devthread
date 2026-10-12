@@ -14,10 +14,10 @@ The root npm package uses Node's built-in modules, requires Node 22+, and target
 | OS | Installer and scripts | Agent discovery |
 | --- | --- | --- |
 | Windows, Node 22.18.0 and Python 3.13 | 11 npm tests pass: file fidelity, spaced paths, preservation, exclusive concurrent install, dry-run, offline archive installation through the npm executable shim, and bundled Python init/validate/status | `$devthread` fresh-chat discovery pending |
-| Linux | POSIX path resolution exercised on Windows; native checks configured in CI, not run | Not run |
-| macOS | POSIX path resolution exercised on Windows; native checks configured in CI, not run | Not run |
+| Linux | Installer/package and Python suites pass in CI on `ubuntu-latest` with Node 22 and 24 and Python 3.13 | Not run |
+| macOS | Installer/package and Python suites pass in CI on `macos-latest` with Node 22 and 24 and Python 3.13 | Not run |
 
-CI targets all three OSes with Node 22 and 24 and Python 3.13. The existing 15 Python tests run on every OS, as does installation of the actual npm archive. CI awaits the initial source upload; a configured matrix does not establish passing results. The user-scoped installed copy was not changed by these tests; global-install tests use a temporary home path.
+[CI passed all six OS/Node combinations](https://github.com/kurarensu16/devthread/actions/runs/38134927423), including Windows with Node 22 and 24 and Python 3.13. Each job ran the npm installer/package suite, the Python suite, and project-map validation. The website job also passed. See [the CI report](../.devthread/reports/TASK-007-ci.md) for the commit and job results. These results cover the runner environments. The user-scoped installed copy was not changed by these tests; global-install tests use a temporary home path.
 
 ## DevThread rename
 
@@ -25,4 +25,4 @@ The Milestone 3 agent sessions used the original DevMap name and user-scoped `de
 
 ## Additional installation routes
 
-The installation guide also includes Codex's built-in `$skill-installer` and Vercel Labs' `npx skills add`, based on their current documentation. Neither route has been exercised with DevThread. GitHub-based installation requires the pending initial source upload. The skills CLI targets `.agents/skills/` for a Codex project installation and `~/.agents/skills/` for global installation. The DevThread npm tests exercise copying into the project location; discovery and these additional installers still need their own checks. Documented installer support does not establish tested DevThread behavior or compatibility with other agents.
+The installation guide also includes Codex's built-in `$skill-installer` and Vercel Labs' `npx skills add`, based on their current documentation. The source is available on GitHub, but neither route has been exercised with DevThread. The skills CLI targets `.agents/skills/` for a Codex project installation and `~/.agents/skills/` for global installation. The DevThread npm tests exercise copying into the project location; discovery and these additional installers still need their own checks. Documented installer support does not establish tested DevThread behavior or compatibility with other agents.

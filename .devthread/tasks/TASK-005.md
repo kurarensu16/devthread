@@ -28,8 +28,8 @@ CI, clean installation, one complete sample workflow, privacy and claim review, 
 
 ## Evidence
 
-- Assessment: likely for release readiness. CI is implemented in `.github/workflows/checks.yml`; local npm and Python checks pass as recorded in `reports/TASK-007-verification.md`. Remote CI, native Linux/macOS execution, fresh-agent discovery, the remaining review gates, and publication are pending.
+- Assessment: likely for release readiness. CI is implemented in `.github/workflows/checks.yml`; local npm and Python checks pass as recorded in `reports/TASK-007-verification.md`. Remote CI passed all six Windows/Linux/macOS and Node 22/24 combinations plus the website job; see `reports/TASK-007-ci.md`. Fresh-agent discovery, the remaining review gates, and publication are pending.
 
 ## Notes/Blockers
 
-Depends on the landing page and documentation task. After the initial source upload, exercise the documented Codex `$skill-installer` and `npx skills add` routes and confirm `$devthread` discovery in a fresh chat. They are currently documented from source guidance and remain untested for DevThread.
+Depends on the landing page and documentation task. The initial source upload is complete. Exercise the documented Codex `$skill-installer` and `npx skills add` routes and confirm `$devthread` discovery in a fresh chat. They are currently documented from source guidance and remain untested for DevThread. The previously declined installed-copy write remains outside this source-push authorization.

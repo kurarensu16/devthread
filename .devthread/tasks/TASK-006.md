@@ -35,4 +35,4 @@ Rename the skill package and local maps, update product branding and commands, r
 
 ## Notes/Blockers
 
-The user created `https://github.com/kurarensu16/devthread.git`; it is configured as local `origin` and in the website. Initial source upload is pending. No domain or package was reserved, purchased, or published. The workspace folder remains `C:/Users/sadia/DevMap` so existing workspace references remain valid. The installed copy at `C:/Users/sadia/.codex/skills/devmap` still uses the old name; updating it requires an approved filesystem operation outside the workspace.
+The user created `https://github.com/kurarensu16/devthread.git`; it is configured as local `origin` and in the website. The initial source upload is complete. No domain or npm package was reserved, purchased, or published. The workspace folder remains `C:/Users/sadia/DevMap` so existing workspace references remain valid. The installed copy at `C:/Users/sadia/.codex/skills/devmap` still uses the old name; updating it requires an approved filesystem operation outside the workspace.

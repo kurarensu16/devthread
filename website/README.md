@@ -30,7 +30,7 @@ npm run check:links
 npm run check:release
 ```
 
-This check validates URL configuration; it does not verify remote contents or approve a release. The GitHub repository was reachable but empty when checked on 2026-10-11. The local source has not been pushed, so installation docs begin with a local checkout. Rebuild and check links after URL changes. Publishing or deploying remains a separate approved step.
+This check validates URL configuration; it does not verify remote contents or approve a release. The initial source was pushed to GitHub on 2026-10-11, and [the first CI run passed](https://github.com/kurarensu16/devthread/actions/runs/38134927423), including the website checks. Rebuild and check links after URL changes. Publishing or deploying remains a separate approved step.
 
 ## Content and styles
 

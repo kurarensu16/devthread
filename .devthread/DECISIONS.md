@@ -53,3 +53,9 @@ The user asked for simpler installation options such as npm. Document Codex's bu
 The user approved npm packaging and requested Windows, Linux, and macOS availability. Implement a root `devthread` package with a Node 22+ CLI using built-in modules. Bundle the existing Python skill and its MIT notice, preserve existing destinations, and offer project/global/custom/dry-run scopes. Package installation is explicit; there are no installation hooks or replacement commands.
 
 Configure native OS checks for Windows, Linux, and macOS with Node 22/24 and Python 3.13, plus the website's CI checks. Local Windows tests pass; record other OSes as pending native CI rather than inferring compatibility from simulated paths. Publishing, source upload, and fresh-chat discovery remain separate actions and checks.
+
+## 2026-10-11 — approved source push and native CI
+
+The user answered yes to creating the initial commit and pushing it to GitHub to run native CI. Push source commit `d160615ec36ab7645e6de8493389efc955409fba` on the existing `master` branch and retain the executable permission on `bin/devthread.mjs`. GitHub Actions run `38134927423` passed all six Windows/Linux/macOS and Node 22/24 combinations with Python 3.13, plus the website checks. Record observed results in `reports/TASK-007-ci.md` and update current installation and compatibility docs. Preserve earlier reports as historical snapshots.
+
+This approval covers the source commit and push, including verification documentation. npm publication, tags, deployment, and the previously declined installed-copy update remain separate actions. Keep the review tasks in review until acceptance is established.
