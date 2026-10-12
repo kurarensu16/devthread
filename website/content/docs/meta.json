@@ -1,9 +1,9 @@
 {
   "title": "DevThread docs",
   "pages": [
-    "---Start here---", "index", "installation", "quick-start-new", "quick-start-existing",
-    "---Understand DevThread---", "concepts", "task-lifecycle", "evidence", "reconciliation",
-    "---Workflow reference---", "workflows",
+    "---Getting started---", "index", "installation", "quick-start-new", "quick-start-existing",
+    "---Core concepts---", "concepts", "task-lifecycle", "evidence", "reconciliation",
+    "---Workflows---", "workflows",
     "---Reference---", "format", "example", "compatibility",
     "---Help & project---", "safety", "troubleshooting", "contributing", "license"
   ]

@@ -73,6 +73,8 @@ npm run lint
 npm run typecheck
 npm run build
 npm run check:links
+npm run check:search
+npm run check:contrast
 ```
 
 The development server serves the local preview at `http://127.0.0.1:3000/`. [Website setup](website/README.md) explains the tracked GitHub URL and the release configuration check. Read [the design](website/DESIGN.md), [Milestone 4 verification](.devthread/reports/TASK-004-verification.md), and [repository URL verification](.devthread/reports/TASK-004-repository-url.md) for design decisions and check limits.

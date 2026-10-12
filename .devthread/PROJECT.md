@@ -20,6 +20,8 @@ TASK-006 is in review. The earlier installed-copy update was declined at the fil
 
 TASK-007 adds the user-approved npm package and Node installer for Windows, Linux, and macOS. Eleven installer/package tests and fifteen Python tests pass locally on Windows. Native CI passed installer/package and Python suites on all three OSes with Node 22/24 and Python 3.13, plus website checks on Linux. The publication dry-run configuration fix is committed at `1b1cc5d`. On 2026-10-12, the user explicitly approved npm publication and the docs update, configured 2FA after npm's first E403 rejection, and completed the retry's browser authentication. Version 0.1.0 is now available as `latest`; the registry archive checksum and integrity match the approved 24-entry package. A fresh-cache Windows registry installation passes file fidelity, dry run, preservation, and installed Python init/validate/status checks. See `reports/TASK-007-publication.md` for commands and limits; earlier local, CI, and preflight reports remain historical evidence. Documentation now uses active npm commands and the observed `.agents/skills` discovery path.
 
+The 2026-10-12 Milestone 4 refinement clarifies installation, host-agent workflow, saved artifacts, statuses, and Taskboard proof on the landing page and in the docs Introduction. Static docs search, 34 palette/grid contrast checks, and exported search-result validation pass. The local production build and link/release checks pass. See `reports/TASK-004-ui-qa.md` for outcomes and the still-pending browser review. TASK-004 remains in review; no website deployment was made.
+
 ## Constraints
 
 - v1 has no dashboard, SaaS backend, user accounts, DevThread-owned model API, or automatic deployment.

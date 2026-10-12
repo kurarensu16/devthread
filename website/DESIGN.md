@@ -34,10 +34,10 @@ Help a student, solo developer, or small team understand DevThread in one minute
 | Surface | `#FFFFFF` | `#13242B` | Cards, code panels, navigation |
 | Primary text | `#13252B` | `#E8F1EF` | Headings and body |
 | Secondary text | `#42565B` | `#B1C8C6` | Metadata and supporting text |
-| Action | `#087F75` | `#5FE1CB` | Links, focus accents, primary actions |
-| Caution | `#986500` | `#F2C66D` | Drift or incomplete evidence, always with a label |
+| Action | `#07766D` | `#5FE1CB` | Links, focus accents, primary actions |
+| Caution | `#8B5D00` | `#F2C66D` | Drift or incomplete evidence, always with a label |
 
-The proposed light text pairs measure at least 4.8:1 for small text on their listed canvas or white surface; the listed dark text pairs exceed 10:1 on the dark canvas. Recheck all final component states, including badges, borders, hover, focus, and code syntax, in the implemented UI. Keep status meaning independent of color.
+The implemented palettes and hero grid pass 34 ordinary-text contrast checks across canvas, surface, soft backgrounds, button foregrounds, and grid intersections; the lowest ratio is 4.60:1. The light teal and amber were darkened slightly after the original values measured 4.25:1 and 4.36:1 on the soft background. The light grid opacity is .03 so small teal text remains above 4.5:1 at line intersections. Recheck rendered syntax colors, other overlays, borders, hover, focus, and component states separately in the browser. These checks do not establish complete accessibility conformance. Keep status meaning independent of color.
 
 ### Typography and spacing
 
@@ -48,7 +48,7 @@ The proposed light text pairs measure at least 4.8:1 for small text on their lis
 
 ### Components
 
-- **Navigation:** DevThread wordmark, Docs, GitHub, and a clear Get started action. The mobile menu must be usable by keyboard and screen reader.
+- **Navigation:** DevThread wordmark, Docs, GitHub, and a clear Install DevThread action. The mobile menu must be usable by keyboard and screen reader.
 - **Buttons and links:** obvious focus ring, underlined body links, discernible labels, and a clear primary action.
 - **Code panels:** selectable text, language or context label, and copy action only if it is robust. Avoid decorative terminal chrome.
 - **Evidence chips:** text label plus simple icon or shape; pair each claim with the file, test, or review evidence where available.
@@ -59,7 +59,7 @@ The proposed light text pairs measure at least 4.8:1 for small text on their lis
 
 | Section | Message and content | Visual treatment |
 | --- | --- | --- |
-| Hero | Tagline: “Know what's built. See what's next. Keep AI development on track.” One sentence explaining the repository-native skill. Get started → installation; GitHub → configured real URL. | Large type and a compact four-node path. |
+| Hero | Tagline: “Know what's built. See what's next. Keep AI development on track.” Explain the host agent and saved map, show installation requirements and a copyable npm command. Install DevThread → installation. | Large type and a Taskboard recommendation with reasons. |
 | Problem | Context is lost between agent sessions; plans drift from code; changes need verification. | Three short statements tied to one realistic project scenario. |
 | How it works | Install → Understand → Map → Reconcile → Resume. | Five-step sequence; stacks vertically on mobile. |
 | Capabilities | Repo awareness, persistent `.devthread/` context, requirement-to-code traceability, next-task recommendation, verification evidence. | Plain cards with a concrete artifact or outcome per card. |
@@ -77,12 +77,20 @@ Use the same colors and typography with a calmer layout. On desktop, use a left 
 Proposed navigation:
 
 1. **Start:** Introduction; Installation; Quick start for a new repository; Quick start for an existing repository.
-2. **Understand DevThread:** Project state; Task lifecycle; Evidence levels; Reconciliation and session recovery.
+2. **Core concepts:** Project state; Task lifecycle; Evidence levels; Reconciliation and session recovery.
 3. **Use the workflows:** `init`, `understand`, `map`, `reconcile`, `next`, `implement`, `verify`, `status`.
 4. **Reference:** `.devthread/` format and schema; End-to-end example; Compatibility.
 5. **Help and project:** Safety and privacy; Troubleshooting and FAQ; Contributing and development setup.
 
 Every workflow page should state when to use it, a natural-language prompt, what files it reads or writes, an example of its output, and any relevant safety boundary. Installation pages must distinguish tested steps from experimental guidance. Commands should be copied from and checked against the delivered repository before publication.
+
+The Introduction includes a hands-on npm installation, first inspection prompt, explicit map-creation prompt, and a file tree from the recorded Taskboard example. Distinguish Node installation requirements, Python helper requirements, and tested versions. Search uses Fumadocs' installed static adapter and a build-time `search-index.json`; it searches the public docs in the browser with no hosted search service or new dependency. Keep the existing desktop sidebar/article/TOC layout.
+
+## 2026-10-12 — UI and content refinement
+
+The user supplied heuristic landing-page and documentation reviews. Preserve the Blueprint visual identity and headline. Clarify which actions the developer requests and which the host agent performs; show concrete files and installation prerequisites near the CTA. Label the Taskboard before/after states and define evidence separately from progress: `review` can contain verified checks while awaiting acceptance. Use current OS/package evidence with versions, scope, and test dates.
+
+Increase small labels, body text, and code-preview sizes; tighten selected section gaps and give copy, theme, and navigation controls usable target sizes. Add static docs search, stronger TOC/sidebar active states, and clipboard success/fallback feedback. Subjective review scores do not count as functional or accessibility verification. Preserve the outstanding manual browser checks after the earlier URL-policy rejection.
 
 ## Interaction and accessibility
 

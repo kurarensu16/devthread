@@ -14,6 +14,7 @@
 - `devthread@0.1.0` is published on npm under MIT. Its approved archive contains 24 entries, with no native binaries or runtime npm dependencies; registry installation has been exercised on Windows in a temporary project with a fresh npm cache.
 - `website/` uses Next.js, TypeScript, Tailwind CSS, and Fumadocs/MDX. A custom landing page and statically generated docs share light/dark design tokens.
 - `website/content/docs/` contains documentation sources; the production build exports routes and assets to `website/out/`.
+- `website/app/search-index.json/route.ts` exports the public MDX search index at build time. Fumadocs static search uses that index in the browser; the site needs no runtime search backend. `website/scripts/check-search.mjs` checks the exported index and result targets, and `check-contrast.mjs` measures declared text palette pairs.
 - `website/site.config.json` tracks the real repository URL. `website/lib/site.ts` reads it with an optional `NEXT_PUBLIC_GITHUB_URL` override. `website/lib/repository-url.mjs` validates the URL for both the site and release configuration check. There is no website runtime backend.
 
 ## Inferences

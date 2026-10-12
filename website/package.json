@@ -9,6 +9,8 @@
     "lint": "eslint .",
     "typecheck": "fumadocs-mdx && next typegen && tsc --noEmit",
     "check:links": "node scripts/check-links.mjs",
+    "check:search": "node scripts/check-search.mjs",
+    "check:contrast": "node scripts/check-contrast.mjs",
     "check:release": "node scripts/check-release.mjs"
   },
   "engines": { "node": ">=20.9.0" },

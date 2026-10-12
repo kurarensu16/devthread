@@ -1,26 +1,91 @@
 ---
 title: Introduction
-description: Keep the current state of a software project close to its code.
+description: Install DevThread, ask your coding agent to inspect a project, and keep its plan beside the code.
 ---
 
-DevThread is an open-source Agent Skill that helps your coding agent understand a repository, maintain a lightweight development map, reconcile plans against code evidence, and resume work across sessions.
+DevThread is an open-source Agent Skill: instructions and local helpers your coding agent uses to understand a repository, plan work, compare the plan with code, and explain the next action.
 
-It uses the host coding agent's model, tools, and repository access. The map lives in a `.devthread/` directory as Markdown and JSON, where you can review it and version it with the project.
+It uses the host coding agent's model, tools, and repository access. Context persists in a **project map**—Markdown and JSON files containing repository findings, requirements, tasks, dependencies, decisions, and check results.
 
-## Start with your repository
+## How it works
 
-1. [Install the complete skill directory](/docs/installation/).
-2. Follow the [new repository](/docs/quick-start-new/) or [existing repository](/docs/quick-start-existing/) quick start.
-3. Learn how [task status](/docs/task-lifecycle/) differs from [evidence](/docs/evidence/).
+You ask the agent to inspect the repository, save a map, reconcile it with code and check results, or resume from the saved files. Each workflow runs when requested. When the plan and implementation disagree, the agent records the gap or conflict and recommends a justified action.
 
-## Product philosophy
+Installation copies the skill into `.agents/skills/devthread/`. Initialization and planning create or update `.devthread/`. Understanding and status leave application code unchanged; source edits require an implementation request.
 
-A useful map records what is known, what is inferred, and what remains unresolved. Stable task IDs and dependencies make the next action explainable. Exact check results make claims reviewable.
+## Quick start
 
-Source inspection supports understanding; it does not prove runtime behavior. DevThread preserves failures and checks that could not run. A task becomes `done` only after acceptance criteria have been explicitly reviewed.
+### What you need
 
-## Current scope
+| Action | Requirement |
+| --- | --- |
+| Install with npm | Node.js **22+** and npm; manual copying does not need Node |
+| Use the skill | A coding agent that can discover skills and read your repository; Codex discovery is observed on Windows |
+| Run the local helpers | Python **3**, using only its standard library; Python 3.13 is the tested version |
 
-Version 1 includes the skill, templates, Python scripts, this landing page, and documentation. The scripts use the Python standard library. DevThread does not need a service or its own model API.
+The tested versions and operating systems are recorded in [compatibility](/docs/compatibility/). Contributor tooling is described separately in [development setup](/docs/contributing/).
 
-[Compatibility](/docs/compatibility/) includes passing installer and Python checks on Windows, Linux, and macOS with Node 22/24 and Python 3.13. The renamed skill has been discovered and loaded in Codex on Windows; independent review of a separate fresh-chat workflow remains pending. Other agents and Python versions remain untested. Read the [safety and privacy notes](/docs/safety/) before adding private project information to the map.
+### Install in your project
+
+From an existing project directory, run:
+
+```sh
+npx devthread install
+```
+
+The complete skill is installed at `.agents/skills/devthread/`. Existing destinations are preserved. Add `--global` for availability across projects, or `--dry-run` to preview without writing files. [Installation](/docs/installation/) covers all options and source/archive alternatives.
+
+### Ask your agent to inspect the repository
+
+Open a fresh Codex chat in that project and ask:
+
+```text
+Use $devthread to understand this repository.
+Read its existing instructions, source, and tests.
+Separate observed facts, inferences, and unknowns.
+```
+
+Review the findings. To create a map, give the agent a bounded goal:
+
+```text
+Use $devthread to initialize a development map for this repository.
+Plan the work for this goal: [describe your goal].
+Preserve existing files and instructions.
+```
+
+Review the map before implementation. Continue with the [existing repository](/docs/quick-start-existing/) or [new repository](/docs/quick-start-new/) walkthrough.
+
+## What DevThread creates
+
+Initialization creates the map's core files and empty task/report directories. Planning adds tasks; verification adds reports. This is the structure of the recorded [Taskboard example](/docs/example/) after planning and verification:
+
+```text
+.devthread/
+├── config.json
+├── PROJECT.md
+├── REQUIREMENTS.md
+├── ARCHITECTURE.md
+├── ROADMAP.md
+├── DECISIONS.md
+├── tasks/
+│   ├── TASK-001.md
+│   └── TASK-002.md
+└── reports/
+    └── TASK-002-verification.md
+```
+
+Project and architecture files save context and findings. Requirements and the roadmap link goals to work. Tasks contain scope, dependencies, acceptance criteria, status, and evidence. Reports record exact commands and passed, failed, or not-run outcomes. `config.json` declares the format version. See [project state](/docs/concepts/) and the [file format](/docs/format/) for details.
+
+In a new chat, the agent reads these files to recover context. Reconciliation checks that saved context still matches the repository.
+
+## Evidence and review
+
+Source inspection supports understanding; it does not prove runtime behavior. DevThread preserves earlier failures and checks that could not run.
+
+[Evidence](/docs/evidence/) and [task status](/docs/task-lifecycle/) describe different things. A task can have verified checks while remaining in `review`. Review the agent's acceptance checks and decide whether the task is accepted; the agent records that decision. Changes and passing tests do not automatically mark a task `done`.
+
+## Scope and compatibility
+
+DevThread includes the skill, templates, local Python helpers, landing page, and documentation. It needs no DevThread service or model API. Your coding agent supplies its configured model and access.
+
+Installer and Python checks pass on Windows, Linux, and macOS with Node 22/24 and Python 3.13. Live registry installation and renamed skill discovery are observed on Windows. Independent review of a separate fresh-chat workflow remains pending; other agents and Python versions remain untested. Read [compatibility](/docs/compatibility/) and [safety and privacy](/docs/safety/) for the full scope and evidence limits.

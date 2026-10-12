@@ -18,9 +18,17 @@ npm run lint
 npm run typecheck
 npm run build
 npm run check:links
+npm run check:search
+npm run check:contrast
 ```
 
 `check:links` checks local links, anchors, and basic document semantics against the actual static export. It excludes remote URLs and does not replace visual, keyboard, or screen-reader review; check those separately before publication.
+
+`check:search` runs the installed Fumadocs static adapter against the exported `out/search-index.json`, checking useful queries and result destinations/anchors. `check:contrast` checks text palette combinations in light and dark themes. These checks do not replace browser testing of the search dialog, copying, keyboard navigation, layout, or rendered syntax colors.
+
+## Static documentation search
+
+`app/search-index.json/route.ts` exports the public MDX index at build time. The root provider uses Fumadocs' static search mode with `/search-index.json`, and the docs sidebar exposes the existing search control and keyboard shortcut. Search runs in the browser; the production site remains a static export. No search account, backend, or dependency was added. See [Fumadocs static search](https://www.fumadocs.dev/docs/headless/search/orama#static-mode).
 
 ## Repository URL
 
@@ -36,6 +44,7 @@ This check validates URL configuration; it does not verify remote contents or ap
 
 - `DESIGN.md`: approved Blueprint direction and design requirements.
 - `app/page.tsx`: landing page and labeled Taskboard example.
+- `components/install-command.tsx`: npm command with clipboard feedback and manual-copy fallback.
 - `app/globals.css`: light/dark tokens, responsive layout, and reduced-motion behavior.
 - `content/docs/`: documentation sources and navigation metadata.
 - `source.config.ts`, `lib/source.ts`: MDX processing and static routes.

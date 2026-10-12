@@ -50,4 +50,6 @@ jobs:
       - run: npm run typecheck
       - run: npm run build
       - run: npm run check:links
+      - run: npm run check:search
+      - run: npm run check:contrast
       - run: npm run check:release

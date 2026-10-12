@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  return <html lang="en" suppressHydrationWarning><body><RootProvider search={{ enabled: false }}><a className="skip-link" href="#main-content">Skip to content</a>{children}</RootProvider></body></html>;
+  return <html lang="en" suppressHydrationWarning><body><RootProvider search={{ options: { type: 'static', api: '/search-index.json' } }}><a className="skip-link" href="#main-content">Skip to content</a>{children}</RootProvider></body></html>;
 }
