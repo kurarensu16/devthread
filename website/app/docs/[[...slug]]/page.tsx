@@ -8,7 +8,7 @@ export default async function Page({ params }: { params: Promise<{ slug?: string
   const page = source.getPage(slug);
   if (!page) notFound();
   const MDX = page.data.body;
-  return <DocsPage toc={page.data.toc}><div id="main-content" tabIndex={-1}><DocsTitle>{page.data.title}</DocsTitle><DocsDescription>{page.data.description}</DocsDescription><DocsBody><MDX components={getMDXComponents()} /></DocsBody></div></DocsPage>;
+  return <DocsPage toc={page.data.toc} tableOfContent={{ single: true }}><div id="main-content" tabIndex={-1}><DocsTitle>{page.data.title}</DocsTitle><DocsDescription>{page.data.description}</DocsDescription><DocsBody><MDX components={getMDXComponents()} /></DocsBody></div></DocsPage>;
 }
 
 export function generateStaticParams() { return source.generateParams(); }

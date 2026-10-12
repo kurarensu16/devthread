@@ -36,3 +36,7 @@ The first version of the search check failed lint because its `Response` and `Bu
 The earlier browser tool rejected the local preview under its URL policy. We did not retry through another renderer. Visual review at 320–390px and tablet widths; keyboard focus and mobile navigation; light/dark theme persistence; copy-button behavior; search-dialog and shortcut interaction; code scrolling; screen-reader behavior; and rendered text/hover contrast remain **not run**. The static checks above are evidence for exported structure and data, not browser behavior. Website deployment also remains pending.
 
 TASK-004 remains in `review` until those checks and acceptance criteria have been reviewed.
+
+## Table-of-contents screenshot follow-up
+
+The developer supplied a screenshot showing two adjacent active headings merged into one pale block in the desktop "On this page" list. The installed Fumadocs table of contents allows multiple visible anchors to be active by default, and our custom CSS painted a background on each active link. Set `DocsPage`'s supported `tableOfContent.single` option and remove the custom active background. Teal active text and Fumadocs' position marker remain. The production build, including TypeScript, passed after this change. Rendered browser behavior remains unverified under the existing preview URL-policy restriction.

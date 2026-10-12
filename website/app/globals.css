@@ -216,7 +216,7 @@ body { background: var(--canvas); color: var(--ink); font-family: var(--font-san
 #nd-sidebar a[data-active='true'] { font-weight: 600; }
 #nd-sidebar button:hover { color: var(--action); }
 #nd-toc a { font-size: 14px; line-height: 1.6; }
-#nd-toc a[data-active='true'] { font-weight: 600; background: var(--soft); border-radius: 3px; }
+#nd-toc a[data-active='true'] { font-weight: 600; }
 @media (max-width: 1100px) {
   .shell { width: calc(100% - 48px); }
   .hero-grid { gap: 35px; }
