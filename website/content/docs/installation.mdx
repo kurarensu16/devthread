@@ -7,25 +7,20 @@ description: Install the complete DevThread skill and confirm it loads in your C
 
 | Method | What you need | Current status |
 | --- | --- | --- |
-| DevThread npm installer | Node.js 22+; Python 3 for skill scripts | Source/archive checks pass on Windows, Linux, and macOS in CI; registry publication pending |
+| DevThread npm installer | Node.js 22+; Python 3 for skill scripts | v0.1.0 published; registry install verified on Windows; archive checks pass on all three OSes in CI |
 | Codex `$skill-installer` | Codex and access to GitHub | Source available on GitHub; DevThread installation with this route is untested |
 | `npx skills add` | Node.js, npm, and Git | Source available locally and on GitHub; route untested for DevThread |
-| Copy the skill directory | A local source checkout | Files and scripts were checked with the original DevMap installation; new-name discovery is pending |
+| Copy the skill directory | A local source checkout | Complete directory required; manual copying under the new name has not been separately exercised |
 
 Python 3 is required to run DevThread's local scripts with any installation method. The recorded Python tests used 3.13. For the DevThread npm installer, check `node --version` and `npm --version`. On Windows, check `python --version`; on Linux or macOS, use `python3 --version`.
 
-The source is available in the [GitHub repository](https://github.com/kurarensu16/devthread). The npm package is unpublished. Use a source checkout or locally built archive for now:
-
-```sh
-git clone https://github.com/kurarensu16/devthread.git
-cd devthread
-```
+[DevThread v0.1.0 is available on npm](https://www.npmjs.com/package/devthread/v/0.1.0) under the MIT license, with no runtime npm dependencies. The npm installer is the simplest starting point. The source is also available in the [GitHub repository](https://github.com/kurarensu16/devthread).
 
 ## Install with the DevThread npm package
 
 The installer uses Node's built-in modules and native paths for Windows, Linux, and macOS. It copies the complete skill and refuses to replace an existing file, directory, or linked destination. Installation does not initialize or change the project's development map.
 
-After npm publication, run this in your project using PowerShell, bash, or zsh:
+Run this in your existing project using PowerShell, bash, or zsh:
 
 ```sh
 npx devthread install
@@ -47,13 +42,15 @@ npx devthread install --dest "PATH_TO_SKILL_DIRECTORY"
 npx devthread install --global --dry-run
 ```
 
-Windows user paths resolve under the user's home directory, such as `C:/Users/NAME/.agents/skills/devthread/`. Linux and macOS use their respective home directories. No administrator installation or symlinks are required.
+Windows user paths resolve under the user's home directory, such as `C:/Users/NAME/.agents/skills/devthread/`. Linux and macOS use their respective home directories. The skill files do not require administrator access or symlinks. To select the initial release explicitly, use `npx devthread@0.1.0 install` with the same options.
 
-### Use the local source now
+### Install from source
 
-From the DevThread checkout, use the existing target project's path:
+Get the source, then use the existing target project's path:
 
 ```sh
+git clone https://github.com/kurarensu16/devthread.git
+cd devthread
 node bin/devthread.mjs install --project "PATH_TO_PROJECT" --dry-run
 node bin/devthread.mjs install --project "PATH_TO_PROJECT"
 ```
@@ -75,25 +72,25 @@ The first global command installs the npm CLI; `devthread install --global` inst
 
 | OS | Recorded checks |
 | --- | --- |
-| Windows | Installer/package and Python suites pass in CI with Node 22 and 24 and Python 3.13; 11 npm and 15 Python tests also pass locally |
+| Windows | Registry-based `npx` installation, dry run, all 19 installed files, preservation, and bundled Python scripts verified; installer/package and Python suites also pass in CI with Node 22 and 24 |
 | Linux | Installer/package and Python suites pass on `ubuntu-latest` with Node 22 and 24 and Python 3.13 |
 | macOS | Installer/package and Python suites pass on `macos-latest` with Node 22 and 24 and Python 3.13 |
 
-[The recorded CI run](https://github.com/kurarensu16/devthread/actions/runs/38134927423) exercised the actual npm archive, preservation checks, and bundled scripts on all three OSes. It also passed the website checks. These results cover the runner environments; other Python versions remain untested.
+[The recorded CI run](https://github.com/kurarensu16/devthread/actions/runs/38198818302) exercised the actual npm archive, preservation checks, and bundled scripts on all three OSes. It also passed the website checks. Live registry installation was additionally verified on Windows with Node 22.18.0 and Python 3.13. Linux and macOS registry downloads have not been separately exercised; their archive and script checks pass in CI. Other Python versions remain untested.
 
-Fresh-chat discovery under `$devthread` remains pending on all three OSes. File and script checks do not prove agent discovery. See [compatibility](/docs/compatibility/) for the full evidence limits.
+DevThread has been discovered and loaded in Codex on Windows from `~/.agents/skills/devthread/`; all 19 installed skill files match the source. Independent review of a separate fresh-chat workflow under the new name remains pending. Agent discovery on Linux and macOS has not been tested. See [compatibility](/docs/compatibility/) for the full evidence limits.
 
 ## Install through Codex
 
 [OpenAI's skill guidance](https://learn.chatgpt.com/docs/build-skills#install-curated-skills-for-local-use) describes using the built-in installer to download skills from other repositories. Send this prompt in Codex:
 
 ```text
-$skill-installer Install the devthread skill from kurarensu16/devthread, path skill/devthread. Preserve any existing installation.
+$skill-installer Install the devthread skill from kurarensu16/devthread, branch master, path skill/devthread. Preserve any existing installation.
 ```
 
 Check the destination reported by the installer. Then use the verification steps below. This route has not yet been exercised with DevThread.
 
-## Install through npx
+## Install with the skills CLI
 
 The [Vercel Labs skills CLI](https://github.com/vercel-labs/skills#install-a-skill) supports GitHub sources and a Codex target. Run this from the project where you want to use DevThread:
 
@@ -113,18 +110,27 @@ These CLI commands follow the installer's documented options; they have not been
 
 ## What about npm install devthread?
 
-The DevThread npm package is implemented locally and still awaits publication. Once published, `npm install devthread` downloads the package as a dependency; then `npx devthread install` places the skill in its discovery directory. Alternatively, `npm install --global devthread` installs the CLI command, followed by `devthread install`. The single `npx devthread install` route is the simplest starting point after publication.
+`npm install devthread` downloads the published package as a dependency; then `npx devthread install` places the skill in its discovery directory. The single `npx devthread install` route downloads and runs the CLI without adding DevThread to your project's dependencies.
+
+For a persistent CLI command, install it globally, then install the skill into your current project:
+
+```sh
+npm install --global devthread
+devthread install
+```
+
+Add `--global` to the second command when the skill should be available across projects. Global npm CLI installation uses your configured npm prefix and may require its usual permissions; the skill files go into your project or user directory.
 
 ## Manual installation on Windows
 
 Have a local DevThread source checkout, Codex with local repository access, and Python 3. The recorded tests used Windows and Python 3.13. Run `python --version` to check your Python installation.
 
-Copy the full `skill/devthread/` directory into `~/.codex/skills/devthread/`. Keep its `references/`, `templates/`, and `scripts/` directories together with `SKILL.md`. This user-scoped location was exercised with the original DevMap package; fresh-chat discovery under the new name still needs checking. OpenAI's [skill evaluation guide](https://developers.openai.com/blog/eval-skills) describes this location. [Current skill guidance](https://learn.chatgpt.com/docs/build-skills) lists `.agents/skills/`; that alternative path is also untested for DevThread here.
+Copy the full `skill/devthread/` directory into `~/.agents/skills/devthread/`. Keep its `references/`, `templates/`, `scripts/`, and `LICENSE` together with `SKILL.md`. This is the user location in [current OpenAI guidance](https://learn.chatgpt.com/docs/build-skills), and the renamed skill has been discovered and loaded there in Codex on Windows. The manual copy command below has not been separately exercised; the npm installer provides the tested copying behavior.
 
 From the DevThread checkout root in PowerShell, use the following command. It stops if an installation already exists so that an existing skill is not overwritten.
 
 ```powershell
-$devthreadSkill = Join-Path $env:USERPROFILE '.codex\skills\devthread'
+$devthreadSkill = Join-Path $env:USERPROFILE '.agents\skills\devthread'
 if (Test-Path -LiteralPath $devthreadSkill) {
   throw 'DevThread is already installed. Review the existing copy before updating it.'
 } else {
@@ -165,7 +171,7 @@ Start a fresh Codex chat with your project open and explicitly request:
 
 > Use $devthread to understand this repository. Report observed facts, inferences, and the next useful action.
 
-Confirm the agent loaded DevThread before relying on its workflows. Fresh-chat discovery and recovery of saved context were exercised before the rename as DevMap; the new skill name still needs a fresh-chat check. If discovery fails, use the [troubleshooting guide](/docs/troubleshooting/).
+Confirm the agent loaded DevThread before relying on its workflows. The renamed skill has been loaded in the current Codex chat on Windows. Independent review of a separate fresh-chat workflow remains pending; the older fresh-chat recovery evidence used DevMap. Codex detects skill changes automatically; if the skill is missing, restart Codex and consult the [troubleshooting guide](/docs/troubleshooting/).
 
 ## Existing project maps
 

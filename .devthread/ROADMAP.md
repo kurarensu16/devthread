@@ -16,8 +16,8 @@
 ## Milestone 5 — release
 
 - TASK-005: CI, clean-install and sample checks, claim review, and approved release.
-- TASK-007: user-approved npm installer and Windows/Linux/macOS targets. In review with passing local Windows/archive checks and native CI on all three OSes with Node 22/24. Npm publication and fresh-agent discovery remain pending.
+- TASK-007: user-approved npm installer and Windows/Linux/macOS targets. Native CI passes on all three OSes with Node 22/24. The explicitly approved v0.1.0 npm release is published and its registry install is verified on Windows. Remains in review; independent fresh-chat workflow review remains pending.
 
 ## Approved naming change
 
-- TASK-006: repository branding, package, and maps renamed; legacy state and 15 passing tests recorded. In review; installed-copy update was declined and new-name discovery remains pending. Release depends on this change being reviewed as well as TASK-004.
+- TASK-006: repository branding, package, and maps renamed; legacy state and 15 passing tests recorded. After the earlier declined update, the renamed user installation is now present, matches all 19 source files, and is discovered in Codex on Windows. In review; independent fresh-chat workflow review remains pending. Full v1 release depends on this change being reviewed as well as TASK-004.

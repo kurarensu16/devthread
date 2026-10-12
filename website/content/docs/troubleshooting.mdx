@@ -5,11 +5,11 @@ description: Resolve discovery, Python, state validation, and dependency problem
 
 ## The skill does not appear
 
-Confirm that the complete directory is installed and `SKILL.md` has its name and description frontmatter. Start a fresh chat and explicitly ask to use `$devthread`. If the host does not detect it, consult its current skill discovery guidance. The tested path and current documented path differ; see [compatibility](/docs/compatibility/).
+Confirm that the complete directory is installed and `SKILL.md` has its name and description frontmatter. Project installation uses `.agents/skills/devthread/`; global installation uses `~/.agents/skills/devthread/`. Start a fresh chat and explicitly ask to use `$devthread`. Codex detects skill changes automatically; if the skill is missing, restart Codex and consult the [current OpenAI guidance](https://learn.chatgpt.com/docs/build-skills). The renamed user installation has been loaded in Codex on Windows; see [compatibility](/docs/compatibility/) for the evidence limits.
 
 ## Python cannot run
 
-Run `python --version`. If your shell cannot find it or invokes an incorrect executable, repair the local Python setup before running the scripts. The tested environment used Python 3.13. Other versions are untested.
+Run `python --version` on Windows, or `python3 --version` on Linux and macOS. If your shell cannot find it or invokes an incorrect executable, repair the local Python setup before running the scripts. The tested environments used Python 3.13. Other versions are untested.
 
 ## GitHub installation cannot find the skill
 
@@ -17,7 +17,7 @@ The source is available at [kurarensu16/devthread](https://github.com/kurarensu1
 
 ## npm install devthread fails
 
-The npm package is implemented locally and has not yet been published. Use its local-source or archive instructions in the [guide](/docs/installation/) until publication. The DevThread installer requires Node.js 22+. After publication, `npm install devthread` downloads the package, and `npx devthread install` copies the skill into its discovery location.
+[DevThread v0.1.0 is public on npm](https://www.npmjs.com/package/devthread/v/0.1.0). Check that Node.js is version 22 or later and that your configured registry can reach the package. `npm view devthread version --registry=https://registry.npmjs.org/` checks the public release. `npm install devthread` downloads the CLI package; `npx devthread install` places the complete skill in its discovery directory. See the [installation guide](/docs/installation/) for source and archive alternatives.
 
 ## The installer says the destination already exists
 

@@ -4,13 +4,21 @@ DevThread is a repository-native Agent Skill for understanding a project's curre
 
 **Status:** The skill, templates, local scripts, and workflow examples are implemented and tested in Codex on Windows with Python 3.13. The source is available on [GitHub](https://github.com/kurarensu16/devthread). [CI passed](https://github.com/kurarensu16/devthread/actions/runs/38134927423) for the installer and Python scripts on Windows, Linux, and macOS with Node 22 and 24, and for the Blueprint website. Milestone 4 is awaiting manual review. Version 0.1.0 packages the installer and skill; registry availability is described below. Other agent compatibility remains untested.
 
-DevThread was previously named DevMap. The new skill is `$devthread`, packaged in `skill/devthread/`. New maps use `.devthread/`; legacy `.devmap/` state remains supported in place. Historical agent tests used the old name; fresh-chat discovery under the new name is still pending. See [the naming decision](docs/NAMING.md) and [compatibility](docs/COMPATIBILITY.md).
+DevThread was previously named DevMap. The new skill is `$devthread`, packaged in `skill/devthread/`. New maps use `.devthread/`; legacy `.devmap/` state remains supported in place. The renamed user installation has been discovered and loaded in Codex on Windows; independent review of a separate fresh-chat workflow remains pending. See [the naming decision](docs/NAMING.md) and [compatibility](docs/COMPATIBILITY.md).
 
 ## Installation
 
 The dependency-free Node installer targets **Windows, Linux, and macOS**. It supports project, global, custom-directory, and dry-run installation and refuses existing destinations. Node.js 22 or later installs the skill; Python 3 runs its local scripts.
 
-Get the source and preview installation into an existing project:
+Run this from the existing project where you want to use DevThread:
+
+```sh
+npx devthread install
+```
+
+Use `npx devthread install --dry-run` to preview, or add `--global` to install the skill across projects. Run `npx devthread --help` for all options. To select this exact release, use `npx devthread@0.1.0 install`.
+
+For installation from source:
 
 ```sh
 git clone https://github.com/kurarensu16/devthread.git
@@ -18,15 +26,9 @@ cd devthread
 node bin/devthread.mjs install --project "PATH_TO_PROJECT" --dry-run
 ```
 
-Remove `--dry-run` to install. For availability across projects, use `install --global`. Run `node bin/devthread.mjs --help` for all options.
+Remove `--dry-run` to install from the checkout.
 
-After npm publication, the corresponding command will be:
-
-```sh
-npx devthread install
-```
-
-Registry installation requires `devthread@0.1.0` to be published. Check availability with `npm view devthread version`; if the registry has no package record, use the source or locally built archive. Installer and script checks pass in CI on Windows, Linux, and macOS; independent fresh-chat `$devthread` workflow verification is pending. [The installation guide](website/content/docs/installation.mdx) includes archive installation, other installers, manual copying, and OS verification limits.
+[`devthread@0.1.0` is published on npm](https://www.npmjs.com/package/devthread/v/0.1.0) under MIT with no runtime npm dependencies. Installation from the registry is verified on Windows, including bundled Python scripts and preservation of existing destinations. Installer and script checks pass in CI on Windows, Linux, and macOS. [The installation guide](website/content/docs/installation.mdx) includes archive installation, other installers, manual copying, and OS verification limits.
 
 ## v1 scope
 

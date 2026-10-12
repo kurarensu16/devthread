@@ -9,19 +9,21 @@ The current skill is self-contained in `skill/devthread/`; copying only `SKILL.m
 
 ## npm installer and OS checks
 
-The root npm package uses Node's built-in modules, requires Node 22+, and targets Windows, Linux, and macOS without native binaries or runtime dependencies. It supports project, global, custom-directory, and dry-run installation with preservation of existing destinations. The package remains unpublished.
+The root npm package uses Node's built-in modules, requires Node 22+, and targets Windows, Linux, and macOS without native binaries or runtime dependencies. It supports project, global, custom-directory, and dry-run installation with preservation of existing destinations. [`devthread@0.1.0` is published on npm](https://www.npmjs.com/package/devthread/v/0.1.0) under MIT; its archive integrity matches the approved local artifact.
 
 | OS | Installer and scripts | Agent discovery |
 | --- | --- | --- |
-| Windows, Node 22.18.0 and Python 3.13 | 11 npm tests pass: file fidelity, spaced paths, preservation, exclusive concurrent install, dry-run, offline archive installation through the npm executable shim, and bundled Python init/validate/status | `$devthread` fresh-chat discovery pending |
+| Windows, Node 22.18.0 and Python 3.13 | 11 npm tests pass; live registry `npx` installation additionally verifies all 19 files, dry run, existing-destination refusal, project-instruction preservation, and bundled Python init/validate/status | `$devthread` discovered and loaded from `~/.agents/skills/devthread/`; separate fresh-chat workflow review pending |
 | Linux | Installer/package and Python suites pass in CI on `ubuntu-latest` with Node 22 and 24 and Python 3.13 | Not run |
 | macOS | Installer/package and Python suites pass in CI on `macos-latest` with Node 22 and 24 and Python 3.13 | Not run |
 
 [CI passed all six OS/Node combinations](https://github.com/kurarensu16/devthread/actions/runs/38134927423), including Windows with Node 22 and 24 and Python 3.13. Each job ran the npm installer/package suite, the Python suite, and project-map validation. The website job also passed. See [the CI report](../.devthread/reports/TASK-007-ci.md) for the commit and job results. These results cover the runner environments. The user-scoped installed copy was not changed by these tests; global-install tests use a temporary home path.
 
+[The publication-preparation CI run also passed all seven jobs](https://github.com/kurarensu16/devthread/actions/runs/38198818302). Registry downloads on Linux and macOS have not been separately exercised. The Windows live-registry test used a fresh temporary project and npm cache and preserved the user's installed skill. See [the publication report](../.devthread/reports/TASK-007-publication.md) for the release identity, commands, checksums, and limits.
+
 ## DevThread rename
 
-The Milestone 3 agent sessions used the original DevMap name and user-scoped `devmap` package. Those historical results are preserved in `WORKFLOW_EVIDENCE.md` and the verification reports. The renamed `devthread` scripts pass the same workflow exercises plus legacy-state preservation tests. Fresh-chat discovery under `$devthread` still requires a separate check; it must not be inferred from the prior-name sessions. Current official documentation lists `.agents/skills/`; copying to that location is now tested by the npm installer, while discovery there remains untested.
+The Milestone 3 agent sessions used the original DevMap name and user-scoped `devmap` package. Those historical results are preserved in `WORKFLOW_EVIDENCE.md` and the verification reports. The renamed `devthread` scripts pass the same workflow exercises plus legacy-state preservation tests. On 2026-10-12, all 19 installed files in `~/.agents/skills/devthread/` matched the repository and the installed manifest was loaded in this Codex chat on Windows. Independent review of a separate fresh-chat workflow under `$devthread` remains pending; it must not be inferred from prior-name sessions or current-chat discovery.
 
 ## Additional installation routes
 
