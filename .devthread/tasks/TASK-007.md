@@ -32,7 +32,8 @@ Root npm package, Node CLI, preservation and package tests, OS CI matrix, instal
 ## Evidence
 
 - Assessment: verified for installer behavior, archive fidelity, Python script execution, and static documentation checks in the recorded environments. Eleven npm tests and fifteen Python tests pass locally on Windows. Native CI passed on Windows, Linux, and macOS with Node 22/24 and Python 3.13, plus the website job. See `reports/TASK-007-verification.md` for local commands, failures, and limits, and `reports/TASK-007-ci.md` for remote outcomes.
+- Publication preparation: the final `npm publish --dry-run` passes all 11 npm tests after fixing inherited dry-run configuration in nested test operations. The 24-entry v0.1.0 archive is prepared; login as `kurarens` and absence of a published package record are confirmed. See `reports/TASK-007-publication-preflight.md` for commands, the initial failure, artifact integrity, and limits.
 
 ## Notes/Blockers
 
-The user approved adding the npm packaging task, requested Windows, Linux, and macOS availability, and approved the initial commit and source push. Native OS CI is complete and passing. Fresh Codex discovery, registry publication, and release remain separate checks; this task remains in review awaiting acceptance.
+The user approved adding the npm packaging task, requested Windows, Linux, and macOS availability, and approved the source commit and push. Native OS CI is complete and passing. New-name discovery is observed in this chat after user setup; independent fresh-chat workflow review remains separate. Source corrections follow that existing authorization; registry publication requires specific approval. This task remains in review awaiting acceptance.

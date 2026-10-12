@@ -16,7 +16,7 @@
   ],
   "engines": { "node": ">=22" },
   "os": ["win32", "linux", "darwin"],
-  "repository": { "type": "git", "url": "https://github.com/kurarensu16/devthread.git" },
+  "repository": { "type": "git", "url": "git+https://github.com/kurarensu16/devthread.git" },
   "homepage": "https://github.com/kurarensu16/devthread#readme",
   "bugs": { "url": "https://github.com/kurarensu16/devthread/issues" },
   "keywords": ["agent-skills", "codex", "development", "project-context"],

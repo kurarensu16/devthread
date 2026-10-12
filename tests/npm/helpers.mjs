@@ -29,5 +29,7 @@ export function command(executable, args, cwd) {
 
 export function npm(args, cwd) {
   assert.ok(process.env.npm_execpath, 'Run the package tests through npm test.');
-  return command(process.execPath, [process.env.npm_execpath, ...args], cwd);
+  // Publication dry runs export npm_config_dry_run to lifecycle scripts.
+  // Nested tests still need to create their temporary archive and installation.
+  return command(process.execPath, [process.env.npm_execpath, '--dry-run=false', ...args], cwd);
 }

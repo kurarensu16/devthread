@@ -2,7 +2,7 @@
 
 DevThread is a repository-native Agent Skill for understanding a project's current state, maintaining a lightweight development map, comparing plans with code evidence, and resuming work across agent sessions.
 
-**Status:** The skill, templates, local scripts, and workflow examples are implemented and tested in Codex on Windows with Python 3.13. The source is available on [GitHub](https://github.com/kurarensu16/devthread). [CI passed](https://github.com/kurarensu16/devthread/actions/runs/38134927423) for the installer and Python scripts on Windows, Linux, and macOS with Node 22 and 24, and for the Blueprint website. Milestone 4 is awaiting manual review; npm publication and other agent compatibility remain pending.
+**Status:** The skill, templates, local scripts, and workflow examples are implemented and tested in Codex on Windows with Python 3.13. The source is available on [GitHub](https://github.com/kurarensu16/devthread). [CI passed](https://github.com/kurarensu16/devthread/actions/runs/38134927423) for the installer and Python scripts on Windows, Linux, and macOS with Node 22 and 24, and for the Blueprint website. Milestone 4 is awaiting manual review. Version 0.1.0 packages the installer and skill; registry availability is described below. Other agent compatibility remains untested.
 
 DevThread was previously named DevMap. The new skill is `$devthread`, packaged in `skill/devthread/`. New maps use `.devthread/`; legacy `.devmap/` state remains supported in place. Historical agent tests used the old name; fresh-chat discovery under the new name is still pending. See [the naming decision](docs/NAMING.md) and [compatibility](docs/COMPATIBILITY.md).
 
@@ -26,7 +26,7 @@ After npm publication, the corresponding command will be:
 npx devthread install
 ```
 
-**The npm package is prepared and has not been published.** Installer and script checks pass in CI on Windows, Linux, and macOS; fresh-chat `$devthread` discovery is pending. [The installation guide](website/content/docs/installation.mdx) includes archive installation, other installers, manual copying, and OS verification limits.
+Registry installation requires `devthread@0.1.0` to be published. Check availability with `npm view devthread version`; if the registry has no package record, use the source or locally built archive. Installer and script checks pass in CI on Windows, Linux, and macOS; independent fresh-chat `$devthread` workflow verification is pending. [The installation guide](website/content/docs/installation.mdx) includes archive installation, other installers, manual copying, and OS verification limits.
 
 ## v1 scope
 

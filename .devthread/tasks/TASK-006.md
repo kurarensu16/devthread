@@ -31,8 +31,8 @@ Rename the skill package and local maps, update product branding and commands, r
 ## Evidence
 
 - Assessment: verified for repository branding, state compatibility, packaging, static build, and local links. The 15 script tests and website checks pass. See `reports/TASK-006-verification.md` for exact outcomes and limits.
-- Installed-copy update is pending: the permission request was declined before execution. Fresh-chat discovery under the new skill name is not established and must not be inferred from prior DevMap discovery.
+- The earlier installed-copy update was declined before execution. On 2026-10-12, after the user reported completing setup, all 19 files in `C:/Users/sadia/.agents/skills/devthread` matched the repository source. The new name is available in this chat and its installed manifest was loaded. A separate fresh-chat workflow output has not been independently reviewed. See `reports/TASK-007-publication-preflight.md`.
 
 ## Notes/Blockers
 
-The user created `https://github.com/kurarensu16/devthread.git`; it is configured as local `origin` and in the website. The initial source upload is complete. No domain or npm package was reserved, purchased, or published. The workspace folder remains `C:/Users/sadia/DevMap` so existing workspace references remain valid. The installed copy at `C:/Users/sadia/.codex/skills/devmap` still uses the old name; updating it requires an approved filesystem operation outside the workspace.
+The user created `https://github.com/kurarensu16/devthread.git`; it is configured as local `origin` and in the website. The initial source upload is complete. No domain or npm package was reserved, purchased, or published. The workspace folder remains `C:/Users/sadia/DevMap` so existing workspace references remain valid. The renamed skill is now installed in `C:/Users/sadia/.agents/skills/devthread`. The earlier declined operation was not retried, and this agent did not replace the old `.codex/skills/devmap` copy.
