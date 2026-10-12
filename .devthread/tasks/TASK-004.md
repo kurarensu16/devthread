@@ -32,7 +32,8 @@ Responsive site, installation guides, quick starts, workflow and format referenc
 - Repository URL configuration and remote verification are recorded in `reports/TASK-004-repository-url.md`.
 - Built-in installer, `npx skills add`, and manual installation guidance are documented with tested/untested limits in `reports/TASK-004-installation-options.md`; static checks pass.
 - The 2026-10-12 landing/docs QA refinement, production build, exported link/search checks, palette contrast checks, and remaining manual review are recorded in `reports/TASK-004-ui-qa.md`.
+- The source refinement commit passed all seven GitHub Actions jobs; see `reports/TASK-004-ui-ci.md`.
 
 ## Notes/Blockers
 
-TASK-003 is done. The browser tool's URL policy blocked visual inspection, so mobile, keyboard, theme, clipboard, and search-dialog behavior still need manual review. The source is pushed to the user-created GitHub repository, and the prior website CI job passed; the current refinement's CI result is recorded separately. Website deployment remains pending.
+TASK-003 is done. The browser tool's URL policy blocked visual inspection, so mobile, keyboard, theme, clipboard, and search-dialog behavior still need manual review. The source is pushed to the user-created GitHub repository, and the current refinement's seven CI jobs pass. Website deployment remains pending.
