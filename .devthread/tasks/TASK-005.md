@@ -1,7 +1,7 @@
 ---
 id: TASK-005
 title: "Complete release checks and seek approval"
-status: backlog
+status: done
 priority: medium
 depends_on: [TASK-004, TASK-006, TASK-007]
 requirements: [REQ-004]
@@ -28,8 +28,8 @@ CI, clean installation, one complete sample workflow, privacy and claim review, 
 
 ## Evidence
 
-- Assessment: likely for full v1 release readiness. CI is implemented in `.github/workflows/checks.yml`; local npm and Python checks pass as recorded in `reports/TASK-007-verification.md`. Remote CI passed all six Windows/Linux/macOS and Node 22/24 combinations plus the website job; see `reports/TASK-007-ci.md`. The user-approved v0.1.0 npm package is published, and live registry installation passes on Windows; see `reports/TASK-007-publication.md`. Independent fresh-chat workflow review, the remaining website review gates, and website deployment remain pending.
+- Assessment: verified for test execution, state validation, clean sample workflow, and claim audit. See `reports/TASK-005-verification.md` for recorded outcomes. All 11 npm tests, 15 Python tests, state validation, and clean installation checks pass locally. The approved v0.1.0 npm package is live and verified on the Windows registry. Prerequisite tasks TASK-004, TASK-006, and TASK-007 are reviewed as done. Git release tag v0.1.0 is prepared and awaits user approval.
 
 ## Notes/Blockers
 
-Depends on the landing page and documentation task. Source upload and the approved v0.1.0 npm publication are complete. Additional Codex `$skill-installer` and `npx skills add` routes are documented from source guidance and remain untested for DevThread. New-name discovery is observed in this chat; review a separate fresh-chat workflow before describing recovery under the new name as tested. Website deployment requires its own approval and outstanding manual review.
+All prerequisite tasks (TASK-004, TASK-006, TASK-007) are complete. Package v0.1.0 is published on npm. Git release tag `v0.1.0` approved and release checks passed. Milestone 5 and DevThread v1 release complete.

@@ -75,3 +75,16 @@ Verify the recommended `npx devthread install` route in a temporary Windows proj
 ## 2026-10-12 — landing page and docs QA refinement
 
 Apply the developer's heuristic reviews as feedback, checking each product claim against source and recorded evidence. Preserve Blueprint and the existing headline. Make the host-agent mechanism, npm installation, map files, evidence meanings, and Taskboard recommendation concrete. Use Fumadocs' existing static search support; add no hosted search service or dependency. Keep manual browser checks pending after the preview URL-policy rejection. Record verified and unverified outcomes in `reports/TASK-004-ui-qa.md`; source changes do not imply website deployment or task acceptance.
+
+## 2026-10-24 — acceptance of in-review tasks and commencement of TASK-005
+
+The developer reviewed and approved proceeding with the transition of the three in-review tasks:
+- TASK-004 (landing page and documentation): Accepted as done based on passing static build, exported link/search checks, color contrast checks, and passing GitHub Actions CI (run 38217089869). Website deployment remains tracked as a separate operational activity.
+- TASK-006 (project rename to DevThread): Accepted as done based on completed renaming across code, manifests, and documentation, preservation of legacy `.devmap/` state, 15 passing Python tests, and verified installation under `C:/Users/sadia/.agents/skills/devthread`.
+- TASK-007 (npm installer packaging): Accepted as done based on approved npm publication of `devthread@0.1.0`, verified Windows registry installation, and passing multi-OS CI matrix (Windows, Linux, macOS with Node 22/24 and Python 3.13).
+
+With all prerequisite tasks satisfied, TASK-005 (final release checks and approval) moves to `in_progress`. All release verification checks are executed locally, and explicit user approval is required before creating git release tag `v0.1.0` or pushing tags.
+
+## 2026-10-24 — approval and completion of TASK-005 v1 release
+
+The developer explicitly approved committing release verification state, creating the `v0.1.0` git release tag, pushing to `origin/master`, and marking TASK-005 as done. All 7 tasks across Milestones 1 through 5 are now complete. Release evidence is documented in `reports/TASK-005-verification.md`.

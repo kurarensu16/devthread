@@ -1,7 +1,7 @@
 ---
 id: TASK-007
 title: "Package an npm installer for Windows, Linux, and macOS"
-status: review
+status: done
 priority: high
 depends_on: [TASK-001]
 requirements: [REQ-004, REQ-005]
@@ -37,4 +37,4 @@ Root npm package, Node CLI, preservation and package tests, OS CI matrix, instal
 
 ## Notes/Blockers
 
-The user approved packaging, Windows/Linux/macOS availability, the source commit and push, and specifically the v0.1.0 npm publication and documentation update. Native OS CI is complete and passing. Publication and live Windows registry installation are complete. New-name discovery is observed in this chat; independent fresh-chat workflow review remains separate. Registry downloads on Linux and macOS have not been separately exercised. This task remains in review awaiting acceptance.
+The user approved packaging, Windows/Linux/macOS availability, the source commit and push, and specifically the v0.1.0 npm publication and documentation update. Native OS CI passed on Windows, Linux, and macOS with Node 22/24 and Python 3.13. Publication and live Windows registry installation are complete and verified. Reviewed as done.

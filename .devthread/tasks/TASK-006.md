@@ -1,7 +1,7 @@
 ---
 id: TASK-006
 title: "Rename the project to DevThread"
-status: review
+status: done
 priority: high
 depends_on: []
 requirements: [REQ-001, REQ-003]
@@ -35,4 +35,4 @@ Rename the skill package and local maps, update product branding and commands, r
 
 ## Notes/Blockers
 
-The user created `https://github.com/kurarensu16/devthread.git`; it is configured as local `origin` and in the website. Source upload and the user-approved `devthread@0.1.0` npm publication are complete. Domain registration remains outside this task. The workspace folder remains `C:/Users/sadia/DevMap` so existing workspace references remain valid. The renamed skill is now installed in `C:/Users/sadia/.agents/skills/devthread`. The earlier declined operation was not retried, and this agent did not replace the old `.codex/skills/devmap` copy.
+The user created `https://github.com/kurarensu16/devthread.git`; it is configured as local `origin` and in the website. Source upload and the user-approved `devthread@0.1.0` npm publication are complete. Domain registration remains outside this task. The workspace folder remains `C:/Users/sadia/DevMap` so existing workspace references remain valid. The renamed skill is installed in `C:/Users/sadia/.agents/skills/devthread`. Reviewed as done; legacy state compatibility and all 15 Python tests are verified.
